@@ -1,0 +1,95 @@
+
+============================================================
+WORKED EXAMPLE: x=[1,2,3,4,5], y=[2,4,5,4,5]
+============================================================
+b1 = Sxy/Sxx = 6/10 = 0.60;  b0 = ybar - b1*xbar = 4 - 0.6*3 = 2.20
+y-hat = 2.2 + 0.6x
+Normal equations (X'X)^-1 X'y = [2.2 0.6]
+
+============================================================
+SIMPLE REGRESSION: exam_score ~ study_hours
+============================================================
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:             exam_score   R-squared:                       0.502
+Model:                            OLS   Adj. R-squared:                  0.500
+Method:                 Least Squares   F-statistic:                     300.1
+Date:                Mon, 19 Oct 2026   Prob (F-statistic):           5.42e-47
+Time:                        07:17:00   Log-Likelihood:                -1018.6
+No. Observations:                 300   AIC:                             2041.
+Df Residuals:                     298   BIC:                             2049.
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+===============================================================================
+                  coef    std err          t      P>|t|      [0.025      0.975]
+-------------------------------------------------------------------------------
+const          40.6464      1.276     31.851      0.000      38.135      43.158
+study_hours     1.7245      0.100     17.323      0.000       1.529       1.920
+==============================================================================
+Omnibus:                        1.723   Durbin-Watson:                   1.881
+Prob(Omnibus):                  0.423   Jarque-Bera (JB):                1.443
+Skew:                           0.110   Prob(JB):                        0.486
+Kurtosis:                       3.259   Cond. No.                         39.3
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+
+============================================================
+MULTIPLE REGRESSION: exam_score ~ study_hours + attendance + sleep + prior_gpa
+============================================================
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:             exam_score   R-squared:                       0.564
+Model:                            OLS   Adj. R-squared:                  0.558
+Method:                 Least Squares   F-statistic:                     95.41
+Date:                Mon, 19 Oct 2026   Prob (F-statistic):           5.58e-52
+Time:                        07:17:00   Log-Likelihood:                -998.62
+No. Observations:                 300   AIC:                             2007.
+Df Residuals:                     295   BIC:                             2026.
+Df Model:                           4                                         
+Covariance Type:            nonrobust                                         
+==================================================================================
+                     coef    std err          t      P>|t|      [0.025      0.975]
+----------------------------------------------------------------------------------
+const              8.7348      6.267      1.394      0.164      -3.599      21.069
+study_hours        1.7212      0.094     18.345      0.000       1.537       1.906
+attendance_pct     0.1960      0.055      3.542      0.000       0.087       0.305
+sleep_hours        0.3454      0.410      0.843      0.400      -0.461       1.152
+prior_gpa          4.0200      0.753      5.342      0.000       2.539       5.501
+==============================================================================
+Omnibus:                        2.676   Durbin-Watson:                   1.948
+Prob(Omnibus):                  0.262   Jarque-Bera (JB):                2.362
+Skew:                           0.188   Prob(JB):                        0.307
+Kurtosis:                       3.217   Cond. No.                     1.43e+03
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The condition number is large, 1.43e+03. This might indicate that there are
+strong multicollinearity or other numerical problems.
+
+Regression equation:
+exam_score = 8.73 +1.72*study_hours +0.20*attendance_pct +0.35*sleep_hours +4.02*prior_gpa
+R-squared = 0.564; adj R-squared = 0.558; RMSE = 6.81
+
+============================================================
+DIAGNOSTICS
+============================================================
+Shapiro-Wilk on residuals: W=0.996, p=0.564
+Durbin-Watson = 1.95  (about 2 means no autocorrelation)
+Breusch-Pagan test for heteroscedasticity: p = 0.809
+
+============================================================
+SCIKIT-LEARN HOLDOUT CHECK (75/25 split)
+============================================================
+Coefficients: {'study_hours': np.float64(1.765), 'attendance_pct': np.float64(0.216), 'sleep_hours': np.float64(0.322), 'prior_gpa': np.float64(3.185)}  intercept: 9.364
+Test R2 = 0.541; Test RMSE = 7.39
+
+============================================================
+INTERPRETATION
+============================================================
+- Model explains 56% of variation in exam scores (adj R2 = 0.56).
+- Each extra study hour adds about 1.72 marks, holding other variables fixed.
+- Significant predictors (p < 0.05): study_hours, attendance_pct, prior_gpa.
+- Residuals are approximately normal and show no strong pattern: assumptions look reasonable.

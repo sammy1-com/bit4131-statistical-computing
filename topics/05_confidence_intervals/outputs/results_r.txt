@@ -1,0 +1,51 @@
+
+============================================================
+WORKED EXAMPLE: n=25, mean=50, s=10, 95% CI
+============================================================
+SE = 2.00; t(0.975, 24) = 2.0639; margin = 4.128; CI = (45.87, 54.13)
+
+============================================================
+CI FOR MEAN EXAM SCORE (t-interval)
+============================================================
+90% CI: (60.56, 62.51) width = 1.95
+95% CI: (60.37, 62.70) width = 2.33
+99% CI: (60.00, 63.07) width = 3.07
+Point estimate = 61.53
+
+============================================================
+CI FOR PASS PROPORTION (Wilson)
+============================================================
+[1] 0.7015547 0.7987062
+attr(,"conf.level")
+[1] 0.95
+
+============================================================
+CI FOR DIFFERENCE IN MEANS (method C - A, Welch)
+============================================================
+Difference = 7.78; 95% CI = (4.73, 10.83)
+
+============================================================
+BOOTSTRAP CI FOR THE MEAN (boot package)
+============================================================
+BOOTSTRAP CONFIDENCE INTERVAL CALCULATIONS
+Based on 2000 bootstrap replicates
+
+CALL : 
+boot.ci(boot.out = b, type = c("perc", "bca"))
+
+Intervals : 
+Level     Percentile            BCa          
+95%   (60.43, 62.70 )   (60.44, 62.72 )  
+Calculations and Intervals on Original Scale
+
+============================================================
+COVERAGE SIMULATION: 100 intervals from samples of n = 30
+============================================================
+96/100 intervals contain the true mean 61.53
+
+============================================================
+INTERPRETATION
+============================================================
+- 95% confident the true mean exam score is between 60.4 and 62.7.
+- 'Confidence' describes the method: about 95 of 100 such intervals capture the true mean.
+- C - A interval (4.7, 10.8) excludes 0.

@@ -1,0 +1,63 @@
+
+============================================================
+WORKED EXAMPLE: 2x2 table [[30, 20], [20, 30]]
+============================================================
+Expected = row total x col total / grand total =
+ [[25. 25.]
+ [25. 25.]]
+chi2 = sum((O-E)^2/E) = 4*(25/25) = 4.00; df = 1; p = 0.0455
+
+============================================================
+TEST OF INDEPENDENCE: programme vs preferred programming language
+============================================================
+Observed counts:
+preferred_language  C++  Java  Python   R
+program                                  
+Computer Science     31    29      72  22
+IT                   32    20      38  13
+Statistics           10    16      36  81
+
+Expected frequencies:
+preferred_language   C++  Java  Python     R
+program                                     
+Computer Science    28.1  25.0    56.2  44.7
+IT                  18.8  16.7    37.6  29.9
+Statistics          26.1  23.2    52.2  41.5
+
+chi2 = 91.193, df = 6, p = 1.71e-17
+Smallest expected count = 16.7 (rule of thumb: all >= 5 -> OK)
+Cramer's V = 0.338
+
+Standardised (Pearson) residuals:
+preferred_language   C++  Java  Python     R
+program                                     
+Computer Science    0.55  0.79    2.11 -3.39
+IT                  3.05  0.80    0.07 -3.09
+Statistics         -3.15 -1.50   -2.24  6.14
+
+============================================================
+GOODNESS OF FIT: are the 4 languages equally popular?
+============================================================
+preferred_language
+Python    146
+R         116
+C++        73
+Java       65
+chi2 = 43.26, df = 3, p = 2.17e-09
+
+============================================================
+2x2: gender vs passed (Fisher exact and chi-square)
+============================================================
+passed   0    1
+gender         
+F       38  115
+M       36  111
+chi2 (Yates) = 0.000, p = 1.000;  Fisher exact p = 1.000, odds ratio = 1.02
+
+============================================================
+INTERPRETATION
+============================================================
+- chi2 = 91.2 with df = 6, p = 1.7e-17: programme and language preference are associated.
+- Cramer's V = 0.34 indicates a strong association.
+- Biggest contributors: Statistics/R (+6.1); Computer Science/R (-3.4); Statistics/C++ (-3.2)
+- Gender and passing are independent here (Fisher p = 1.00).

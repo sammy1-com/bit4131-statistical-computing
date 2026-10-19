@@ -1,0 +1,28 @@
+
+============================================================
+WORKED EXAMPLE: estimate pi
+============================================================
+pi-hat = 3.14000 (true 3.14159); MC standard error = 0.00520
+
+============================================================
+INVERSE-TRANSFORM SAMPLING: Exponential(rate 0.125)
+============================================================
+sample mean = 7.999 (theory 8); sample variance = 63.83 (theory 64)
+
+============================================================
+MONTE CARLO INTEGRATION: integral of exp(-x^2) over [0,1]
+============================================================
+MC = 0.74672 +/- 0.00088 | integrate() = 0.74682
+
+============================================================
+DATASET: simulate a class of 40 students (resampled from the data)
+============================================================
+P(class mean > 65) = 0.0141 | mean of class means = 61.53, SD = 1.62
+Simulated P(more than 12 of 40 fail) = 0.1656 | exact binomial = 0.1662
+
+============================================================
+INTERPRETATION
+============================================================
+- With 100000 points pi is estimated as 3.1400 (error 0.0016).
+- Inverse-transform sampling turns uniforms into any distribution with an invertible CDF.
+- Error falls like 1/sqrt(N): 100x more simulations buy only 10x more accuracy.

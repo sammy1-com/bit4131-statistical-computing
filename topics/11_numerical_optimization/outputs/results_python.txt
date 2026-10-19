@@ -1,0 +1,33 @@
+
+============================================================
+WORKED EXAMPLE: minimise f(x) = (x - 3)^2 + 2
+============================================================
+Analytic: f'(x) = 2(x-3) = 0 -> x* = 3, f(x*) = 2
+Numeric : x* = 3.000000, f(x*) = 2.000000, converged = True
+
+============================================================
+OBJECTIVE: Rosenbrock f(x,y) = (1-x)^2 + 100(y-x^2)^2   (true minimum at (1,1))
+============================================================
+Nelder-Mead  -> x = (1.00000, 1.00001), f = 6.32e-10, iterations = 93, converged = True
+BFGS         -> x = (1.00000, 1.00000), f = 1.97e-16, iterations = 37, converged = True
+CG           -> x = (1.00000, 1.00000), f = 4.12e-16, iterations = 29, converged = True
+
+============================================================
+DATASET: MLE of Lognormal(mu, sigma) for ticket resolution times
+============================================================
+Numerical MLE  : mu = 1.3432, sigma = 0.6611, converged = True
+Closed form    : mu = 1.3431, sigma = 0.6611
+Negative log-likelihood at optimum = 1174.11
+
+============================================================
+CONSTRAINED: maximise study benefit 4*sqrt(h1)+3*sqrt(h2) subject to h1+h2 = 20
+============================================================
+Optimal split: h1 = 12.799, h2 = 7.201; benefit = 22.3607
+Analytic (Lagrange) answer: h1 = 16/25*20 = 12.8, h2 = 9/25*20 = 7.2
+
+============================================================
+INTERPRETATION
+============================================================
+- All three methods reach (1,1). Iterations: Nelder-Mead 93, BFGS 37, CG 29: gradient-based methods need fewer steps than the derivative-free simplex.
+- Numerical MLE agrees with the closed-form estimates: optimisation is how MLE is computed when no formula exists.
+- The constrained solution allocates more hours to the higher-benefit subject, matching the Lagrange result.

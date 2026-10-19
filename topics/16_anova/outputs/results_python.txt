@@ -1,0 +1,58 @@
+
+============================================================
+WORKED EXAMPLE: groups G1=[5,6,7], G2=[8,9,10], G3=[11,12,13]
+============================================================
+Grand mean = 9.0;  SSB = 54.0;  SSW = 6.0
+MSB = 27.0;  MSW = 1.0;  F = 27.00;  p = 0.00100
+scipy check: F_onewayResult(statistic=np.float64(27.0), pvalue=np.float64(0.0010000000000000002))
+
+============================================================
+ONE-WAY ANOVA: exam_score ~ method
+============================================================
+               sum_sq     df        F  PR(>F)
+C(method)   2907.8786    2.0  15.1734     0.0
+Residual   28458.9777  297.0      NaN     NaN
+
+F = 15.173, p = 5.32e-07, eta-squared = 0.093
+
+Group means:
+        count   mean    std
+method                     
+A          89  58.39  10.30
+B         123  60.48   9.06
+C          88  66.17  10.24
+
+============================================================
+ASSUMPTION CHECKS
+============================================================
+Levene (equal variance): p = 0.3817
+Shapiro (residual normality): p = 0.1293
+
+============================================================
+POST-HOC: Tukey HSD
+============================================================
+Multiple Comparison of Means - Tukey HSD, FWER=0.05
+===================================================
+group1 group2 meandiff p-adj  lower   upper  reject
+---------------------------------------------------
+     A      B   2.0877 0.2772 -1.121  5.2965  False
+     A      C   7.7795    0.0 4.3132 11.2458   True
+     B      C   5.6917 0.0001 2.4724  8.9111   True
+---------------------------------------------------
+
+============================================================
+TWO-WAY ANOVA: exam_score ~ method * gender
+============================================================
+                         sum_sq     df        F  PR(>F)
+C(method)             2887.1134    2.0  14.9265  0.0000
+C(gender)                2.0448    1.0   0.0211  0.8845
+C(method):C(gender)     23.8184    2.0   0.1231  0.8842
+Residual             28433.1145  294.0      NaN     NaN
+
+============================================================
+INTERPRETATION
+============================================================
+- The F-test (F = 15.2, p = 5.3e-07) rejects H0: at least one method has a different mean.
+- Method explains 9% of score variance (eta-squared): a medium effect.
+- Tukey HSD identifies which pairs differ: A-C, B-C.
+- Interaction method x gender p = 0.884: no evidence the method effect depends on gender.

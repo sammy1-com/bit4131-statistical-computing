@@ -1,0 +1,107 @@
+
+============================================================
+WORKED EXAMPLE: least squares by hand, x = 1:5, y = c(2,4,5,4,5)
+============================================================
+b1 = Sxy/Sxx = 6/10 = 0.60; b0 = 2.20 -> y-hat = 2.2 + 0.6x
+Normal equations: 2.2 0.6 
+
+============================================================
+SIMPLE REGRESSION: exam_score ~ study_hours
+============================================================
+
+Call:
+lm(formula = exam_score ~ study_hours, data = df)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-22.5342  -4.9365  -0.3817   4.3928  20.5933 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 40.64639    1.27612   31.85   <2e-16 ***
+study_hours  1.72450    0.09955   17.32   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 7.242 on 298 degrees of freedom
+Multiple R-squared:  0.5017,	Adjusted R-squared:  0.5001 
+F-statistic: 300.1 on 1 and 298 DF,  p-value: < 2.2e-16
+
+
+============================================================
+MULTIPLE REGRESSION
+============================================================
+
+Call:
+lm(formula = exam_score ~ study_hours + attendance_pct + sleep_hours + 
+    prior_gpa, data = df)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-19.7207  -4.6863  -0.2506   4.1037  20.9091 
+
+Coefficients:
+               Estimate Std. Error t value Pr(>|t|)    
+(Intercept)     8.73481    6.26717   1.394 0.164445    
+study_hours     1.72117    0.09382  18.345  < 2e-16 ***
+attendance_pct  0.19600    0.05534   3.542 0.000461 ***
+sleep_hours     0.34545    0.40969   0.843 0.399807    
+prior_gpa       4.02002    0.75258   5.342 1.84e-07 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 6.809 on 295 degrees of freedom
+Multiple R-squared:  0.564,	Adjusted R-squared:  0.5581 
+F-statistic: 95.41 on 4 and 295 DF,  p-value: < 2.2e-16
+
+
+broom::tidy:
+# A tibble: 5 x 7
+  term           estimate std.error statistic  p.value conf.low conf.high
+  <chr>             <dbl>     <dbl>     <dbl>    <dbl>    <dbl>     <dbl>
+1 (Intercept)       8.73     6.27       1.39  1.64e- 1  -3.60      21.1  
+2 study_hours       1.72     0.0938    18.3   1.10e-50   1.54       1.91 
+3 attendance_pct    0.196    0.0553     3.54  4.61e- 4   0.0871     0.305
+4 sleep_hours       0.345    0.410      0.843 4.00e- 1  -0.461      1.15 
+5 prior_gpa         4.02     0.753      5.34  1.84e- 7   2.54       5.50 
+
+broom::glance:
+# A tibble: 1 x 12
+  r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
+      <dbl>         <dbl> <dbl>     <dbl>    <dbl> <dbl>  <dbl> <dbl> <dbl>
+1     0.564         0.558  6.81      95.4 5.58e-52     4  -999. 2009. 2031.
+# i 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
+
+Variance inflation factors (multicollinearity):
+   study_hours attendance_pct    sleep_hours      prior_gpa 
+      1.004937       1.002197       1.007701       1.001555 
+
+============================================================
+DIAGNOSTICS
+============================================================
+
+	Shapiro-Wilk normality test
+
+data:  res
+W = 0.99562, p-value = 0.5642
+
+Durbin-Watson:
+ lag Autocorrelation D-W Statistic p-value
+   1      0.02541759      1.947817   0.626
+ Alternative hypothesis: rho != 0
+Non-constant variance test:
+Non-constant Variance Score Test 
+Variance formula: ~ fitted.values 
+Chisquare = 1.614934, Df = 1, p = 0.2038
+
+============================================================
+HOLD-OUT CHECK (75/25 split)
+============================================================
+Test R2 = 0.513 | Test RMSE = 7.21
+
+============================================================
+INTERPRETATION
+============================================================
+- Model explains 56% of variation (adj R2 = 0.56).
+- Each extra study hour adds about 1.72 marks, other variables held fixed.
+- Significant predictors (p < 0.05): study_hours, attendance_pct, prior_gpa 

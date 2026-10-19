@@ -1,0 +1,22 @@
+
+============================================================
+WORKED EXAMPLE: standard error
+============================================================
+mu = 4.763, sigma = 3.481, skewness = 2.23
+n = 30: SE = sigma/sqrt(n) = 0.6355
+
+============================================================
+SAMPLING DISTRIBUTION OF THE MEAN (5,000 samples each)
+============================================================
+    n  mean of means  SD of means  theory SE    skew
+    2         4.7760       2.4323     2.4614    1.56
+    5         4.8009       1.5742     1.5567    1.02
+   30         4.7810       0.6446     0.6355    0.44
+  100         4.7657       0.3508     0.3481    0.27
+  500         4.7617       0.1557     0.1557    0.07
+
+============================================================
+INTERPRETATION
+============================================================
+- Population skewness 2.23; sample-mean skewness falls from 1.56 (n=2) to 0.27 (n=100).
+- Mean of sample means equals mu; their SD matches sigma/sqrt(n); quadrupling n halves the SE.

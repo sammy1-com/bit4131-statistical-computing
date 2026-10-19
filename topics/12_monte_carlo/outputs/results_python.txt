@@ -1,0 +1,30 @@
+
+============================================================
+WORKED EXAMPLE: estimate pi (area of quarter circle = pi/4)
+============================================================
+pi-hat = 4 * 78593/100000 = 3.14372  (true 3.14159); MC standard error = 0.00519
+
+============================================================
+INVERSE-TRANSFORM SAMPLING: Exponential(rate 0.125) from Uniform(0,1)
+============================================================
+sample mean = 8.052 (theory 8);  sample var = 64.47 (theory 64)
+
+============================================================
+MONTE CARLO INTEGRATION: integral of exp(-x^2) over [0,1]
+============================================================
+MC estimate = 0.74707 +/- 0.00088;  exact = 0.74682
+
+============================================================
+DATASET: simulate a class of 40 students (resample from data)
+============================================================
+Simulated P(class mean > 65) = 0.0131
+Class mean average = 61.54, SD = 1.60
+Simulated P(more than 12 of 40 fail) = 0.1678   exact binomial = 0.1662
+
+============================================================
+INTERPRETATION
+============================================================
+- With 100,000 random points pi is estimated as 3.1437, within 0.0021 of the truth.
+- Inverse-transform sampling turns uniform random numbers into any distribution with an invertible CDF.
+- Error falls like 1/sqrt(N): 100x more simulations buy only 10x more accuracy.
+- The simulated failure probability agrees closely with the exact binomial value, and the MC integral with quadrature.

@@ -1,0 +1,39 @@
+
+============================================================
+WORKED EXAMPLE: one bootstrap resample of [3, 5, 7, 9, 11]
+============================================================
+resample 1: [11  5  5  7 11]  -> mean 7.8
+resample 2: [3 5 7 5 7]  -> mean 5.4
+resample 3: [5 3 3 3 9]  -> mean 4.6
+Sampling WITH replacement: values may repeat, others be left out.
+
+============================================================
+BOOTSTRAP: median resolution time (no simple formula for its SE)
+============================================================
+Sample median = 3.880; bootstrap SE = 0.1319; bias = +0.0120
+95% percentile CI = (3.620, 4.145)
+95% BCa CI (scipy)  = (3.620, 4.125)
+
+============================================================
+BOOTSTRAP: mean exam score — compared with the t-interval
+============================================================
+Bootstrap SE = 0.5931 vs analytic s/sqrt(n) = 0.5913
+Bootstrap 95% CI = (60.36, 62.70);  t 95% CI = (60.37, 62.70)
+
+============================================================
+BOOTSTRAP: correlation (study_hours, exam_score)
+============================================================
+r = 0.708; bootstrap SE = 0.0275; 95% CI = (0.652, 0.759)
+
+============================================================
+BOOTSTRAP: difference in mean score, method C - A
+============================================================
+Observed diff = 7.78; 95% CI = (4.78, 10.82)
+
+============================================================
+INTERPRETATION
+============================================================
+- The median has no easy SE formula, yet the bootstrap gives SE = 0.132h and a CI of (3.62, 4.14).
+- For the mean, bootstrap and classical t-intervals nearly coincide: the bootstrap is trustworthy.
+- Correlation and mean differences get honest uncertainty estimates without normality assumptions.
+- The bootstrap approximates the sampling distribution by resampling the data itself.

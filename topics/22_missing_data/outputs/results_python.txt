@@ -1,0 +1,59 @@
+
+============================================================
+WORKED EXAMPLE: mean imputation on [4, 6, NaN, 10]
+============================================================
+observed mean = (4+6+10)/3 = 6.666666666666667 -> imputed series: [ 4.          6.          6.66666667 10.        ]
+Note: mean imputation keeps the mean but SHRINKS the variance.
+
+============================================================
+MISSING-DATA SUMMARY
+============================================================
+                n_missing  pct_missing
+study_hours            38         12.7
+attendance_pct         53         17.7
+sleep_hours            35         11.7
+prior_gpa              26          8.7
+exam_score              0          0.0
+
+Rows with at least one missing value: 131 of 300 (44%)
+Complete cases (listwise deletion) leave n = 169
+
+============================================================
+MECHANISM: is missingness related to OBSERVED prior_gpa? (MAR check, Fisher exact)
+============================================================
+attendance_pct : missing 29% when GPA < 2.7 vs 15% otherwise; Fisher p = 0.019
+sleep_hours    : missing 14% when GPA < 2.7 vs 11% otherwise; Fisher p = 0.522
+Small p -> missingness depends on an observed variable (MAR); large p -> consistent with MCAR.
+
+============================================================
+IMPUTATION METHODS vs TRUTH (we know the original values)
+============================================================
+                        RMSE_study_hours  RMSE_attendance_pct  RMSE_prior_gpa  SD_attendance
+method                                                                                      
+Mean                               4.133                7.113           0.447          6.466
+Median                             4.137                7.373           0.431          6.482
+KNN (k=5)                          3.190                7.781           0.531          6.574
+Iterative (regression)             2.969                7.261           0.451          6.496
+
+True SD of attendance (full data) = 7.124; after deletion = 7.128
+
+============================================================
+BEFORE vs AFTER IMPUTATION: regression slope of exam_score on study_hours
+============================================================
+Truth (full data)       : 1.7245
+Complete cases          : 1.8131
+Mean                    : 1.7729
+Median                  : 1.7729
+KNN (k=5)               : 1.8201
+Iterative (regression)  : 1.8470
+
+============================================================
+INTERPRETATION
+============================================================
+- Listwise deletion would discard 44% of students: wasteful and potentially biased.
+- Attendance missingness vs low GPA: Fisher p = 0.019 -> depends on an observed variable (MAR). Sleep: p = 0.52 -> consistent with MCAR.
+- study_hours is imputed best by Iterative (regression) (RMSE 2.97 vs 4.13 for the mean): it is related to exam_score, which the model can exploit.
+- attendance_pct is best imputed by Mean: it is only weakly related to the other variables, so model-based methods have little to add.
+- Mean imputation shrinks the SD of attendance to 6.47 (true 7.12), understating uncertainty.
+- Regression slope closest to the truth (1.724): Median (1.773). All methods land within 0.12 of it here.
+- Lesson: there is no universally best imputation; the benefit depends on how strongly the missing variable relates to the rest.

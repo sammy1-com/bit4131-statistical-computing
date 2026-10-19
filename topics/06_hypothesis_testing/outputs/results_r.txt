@@ -1,0 +1,91 @@
+
+============================================================
+WORKED EXAMPLE: one-sample t-test, H0: mu = 60 (n=36, xbar=63, s=9)
+============================================================
+t = 2.000, df = 35, p = 0.05331 -> FAIL TO REJECT H0 at alpha = 0.05
+
+============================================================
+TEST 1: one-sample t-test, H0: mean = 60
+============================================================
+
+	One Sample t-test
+
+data:  df$exam_score
+t = 2.5913, df = 299, p-value = 0.01003
+alternative hypothesis: true mean is not equal to 60
+95 percent confidence interval:
+ 60.36861 62.69605
+sample estimates:
+mean of x 
+ 61.53233 
+
+
+============================================================
+TEST 2: Welch two-sample t-test, A vs C
+============================================================
+
+	Welch Two Sample t-test
+
+data:  exam_score by method
+t = -5.0401, df = 174.99, p-value = 1.154e-06
+alternative hypothesis: true difference in means between group A and group C is not equal to 0
+95 percent confidence interval:
+ -10.825787  -4.733176
+sample estimates:
+mean in group A mean in group C 
+       58.39438        66.17386 
+
+# A tibble: 1 x 7
+  .y.        group1 group2 effsize    n1    n2 magnitude
+* <chr>      <chr>  <chr>    <dbl> <int> <int> <ord>    
+1 exam_score A      C       -0.758    89    88 moderate 
+
+============================================================
+TEST 3: paired t-test, tutoring pre vs post
+============================================================
+
+	Paired t-test
+
+data:  tut$post_score and tut$pre_score
+t = 7.6052, df = 39, p-value = 3.209e-09
+alternative hypothesis: true mean difference is not equal to 0
+95 percent confidence interval:
+ 3.993173 6.886827
+sample estimates:
+mean difference 
+           5.44 
+
+
+============================================================
+TEST 4: one-proportion test, H0: pass rate = 0.70
+============================================================
+
+	1-sample proportions test without continuity correction
+
+data:  sum(df$passed) out of nrow(df), null probability 0.7
+X-squared = 4.0635, df = 1, p-value = 0.04382
+alternative hypothesis: true p is not equal to 0.7
+95 percent confidence interval:
+ 0.7015547 0.7987062
+sample estimates:
+        p 
+0.7533333 
+
+z = 2.016; p = 0.04382 -> REJECT H0 at alpha = 0.05
+
+============================================================
+TEST 5: Levene test for equal variances (A vs C)
+============================================================
+Levene's Test for Homogeneity of Variance (center = median)
+       Df F value Pr(>F)
+group   1  0.1648 0.6852
+      175               
+
+============================================================
+INTERPRETATION
+============================================================
+- A p-value is the probability of data this extreme if H0 were true; p < 0.05 rejects H0.
+- Mean score vs 60: p = 0.01003 -> REJECT H0 at alpha = 0.05
+- Method A vs C: p = 1.154e-06 -> REJECT H0 at alpha = 0.05
+- Tutoring (paired): p = 3.209e-09 -> REJECT H0 at alpha = 0.05
+- Always report an effect size next to the p-value: significance is not importance.

@@ -1,0 +1,43 @@
+
+============================================================
+WORKED EXAMPLES
+============================================================
+Binomial(n=10, p=0.3): P(X=3) = 0.2668 = C(10,3)(0.3)^3(0.7)^7
+Poisson(lambda=5):      P(X<=3) = 0.265
+Normal(60, 10):         P(50<X<70) = 0.6827
+Exponential(mean 8):    P(X>10) = 0.2865
+
+============================================================
+FIT 1: exam_score ~ Normal
+============================================================
+Fitted mu = 61.53, sigma = 10.23
+P(score >= 70)  = 0.2038
+P(score < 50)   = 0.1297
+90th percentile = 74.64
+KS test: D = 0.0343, p = 0.8602
+
+============================================================
+FIT 2: arrival_gap_min ~ Exponential
+============================================================
+Fitted mean gap = 7.41 min (rate = 0.1349/min)
+KS test: D = 0.0277, p = 0.8278
+
+============================================================
+FIT 3: tickets_per_hour ~ Poisson
+============================================================
+Estimated lambda = 4.890; variance = 5.064 (Poisson: mean = variance)
+
+============================================================
+FIT 4: resolution_hours ~ Lognormal vs Normal (AIC)
+============================================================
+Lognormal: sigma=0.661, median=3.831h, AIC=2352.2
+Normal   : mean=4.763, sd=3.481, AIC=2670.2
+Better fit (lower AIC): Lognormal
+
+============================================================
+INTERPRETATION
+============================================================
+- Exam scores fit a Normal(mu=61.5, sigma=10.2); KS p = 0.86 gives no evidence against it.
+- Gaps between tickets follow an Exponential with mean 7.4 min (memoryless waiting times).
+- Hourly ticket counts have mean 4.89 close to variance 5.06: consistent with Poisson.
+- Resolution times are right-skewed; the lognormal beats the normal by AIC.

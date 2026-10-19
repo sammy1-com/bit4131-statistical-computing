@@ -1,0 +1,46 @@
+
+============================================================
+WORKED EXAMPLE: two fair dice
+============================================================
+P(sum = 7)               = 0.1667 
+P(at least one 6)        = 0.3056 
+P(sum=7 AND a 6)         = 0.0556 
+P(sum=7 | at least one 6)= 0.1818 (= 2/11)
+
+============================================================
+DATASET: probabilities from the students table
+============================================================
+P(pass) = 0.7533 | P(method B) = 0.4100 | P(Statistics) = 0.3800
+
+Contingency table:
+      passed
+method   0   1 Sum
+   A    27  62  89
+   B    34  89 123
+   C    13  75  88
+   Sum  74 226 300
+
+P(pass | method):
+     A      B      C 
+0.6966 0.7236 0.8523 
+
+row-wise proportions:
+      passed
+method      0      1
+     A 0.3034 0.6966
+     B 0.2764 0.7236
+     C 0.1477 0.8523
+
+P(B and pass) = 0.2967 vs P(B)P(pass) = 0.3089 -> not independent
+Bayes: P(method C | pass) = 0.3319
+
+============================================================
+SIMULATION: P(sum=7 | at least one 6), 200,000 rolls
+============================================================
+Simulated = 0.1814 | Exact = 0.1818
+
+============================================================
+INTERPRETATION
+============================================================
+- Overall P(pass) = 0.75, but it ranges from 0.70 (A) to 0.85 (C): conditioning changes the probability.
+- Simulation agrees with the exact result 2/11.

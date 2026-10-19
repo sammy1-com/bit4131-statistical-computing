@@ -1,0 +1,105 @@
+
+============================================================
+WORKED EXAMPLE: 2x2 table [[30,20],[20,30]]
+============================================================
+Expected counts:
+     [,1] [,2]
+[1,]   25   25
+[2,]   25   25
+chi2 = 4.00, df = 1, p = 0.0455
+
+============================================================
+TEST OF INDEPENDENCE: programme vs preferred language
+============================================================
+Observed:
+                  language
+program            C++ Java Python  R
+  Computer Science  31   29     72 22
+  IT                32   20     38 13
+  Statistics        10   16     36 81
+
+	Pearson's Chi-squared test
+
+data:  tab
+X-squared = 91.193, df = 6, p-value < 2.2e-16
+
+
+Expected frequencies:
+                  language
+program             C++ Java Python    R
+  Computer Science 28.1 25.0   56.2 44.7
+  IT               18.8 16.7   37.6 29.9
+  Statistics       26.1 23.2   52.2 41.5
+
+Standardised (Pearson) residuals:
+                  language
+program              C++  Java Python     R
+  Computer Science  0.55  0.79   2.11 -3.39
+  IT                3.05  0.80   0.07 -3.09
+  Statistics       -3.15 -1.50  -2.24  6.14
+
+Association strength (vcd::assocstats):
+                    X^2 df P(> X^2)
+Likelihood Ratio 90.065  6        0
+Pearson          91.193  6        0
+
+Phi-Coefficient   : NA 
+Contingency Coeff.: 0.431 
+Cramer's V        : 0.338 
+
+============================================================
+GOODNESS OF FIT: are the 4 languages equally popular?
+============================================================
+
+   C++   Java Python      R 
+    73     65    146    116 
+
+	Chi-squared test for given probabilities
+
+data:  cnt
+X-squared = 43.26, df = 3, p-value = 2.167e-09
+
+
+============================================================
+2x2: gender vs passed
+============================================================
+      passed
+gender   0   1
+     F  38 115
+     M  36 111
+
+	Pearson's Chi-squared test with Yates' continuity correction
+
+data:  t22
+X-squared = 8.9393e-31, df = 1, p-value = 1
+
+
+	Fisher's Exact Test for Count Data
+
+data:  t22
+p-value = 1
+alternative hypothesis: true odds ratio is not equal to 1
+95 percent confidence interval:
+ 0.5824459 1.7842052
+sample estimates:
+odds ratio 
+  1.018781 
+
+
+============================================================
+LOG-LINEAR MODEL (MASS::loglm)
+============================================================
+Call:
+MASS::loglm(formula = ~program + language, data = tab)
+
+Statistics:
+                      X^2 df P(> X^2)
+Likelihood Ratio 90.06546  6        0
+Pearson          91.19277  6        0
+
+============================================================
+INTERPRETATION
+============================================================
+- chi2 = 91.2, df = 6, p = 1.7e-17: programme and language preference are associated.
+- Cramer's V = 0.34 (0 none, 1 perfect).
+- Smallest expected count = 16.7 (rule of thumb: >= 5).

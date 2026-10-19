@@ -1,0 +1,53 @@
+
+============================================================
+WORKED EXAMPLE: data = c(10, 20, 30, 40, 100)
+============================================================
+mean = 40 | sd = 35.3553 
+z-score : -0.849 -0.566 -0.283 0 1.697 
+min-max : 0 0.111 0.222 0.333 1 
+log10   : 1 1.301 1.477 1.602 2 
+
+============================================================
+DATASET 1: skewed variable - ticket resolution_hours
+============================================================
+original      log     sqrt   boxcox 
+  2.2306  -0.0224   1.0147  -0.0224 
+Box-Cox lambda = 0.000 (0 means log)
+
+============================================================
+DATASET 2: scaling numeric predictors (students)
+============================================================
+Original:
+     study_hours attendance_pct exam_score
+mean       12.11          87.82      61.53
+sd          4.21           7.12      10.24
+min         2.90          62.50      25.70
+max        22.90          99.70      87.60
+
+Standardised:
+     study_hours attendance_pct exam_score
+mean       0.000          0.000      0.000
+sd         1.000          1.000      1.000
+min       -2.189         -3.555     -3.498
+max        2.564          1.668      2.545
+
+Min-max:
+     study_hours attendance_pct exam_score
+mean       0.461          0.681      0.579
+sd         0.210          0.191      0.165
+min        0.000          0.000      0.000
+max        1.000          1.000      1.000
+
+============================================================
+recipes: reproducible preprocessing pipeline
+============================================================
+     study_hours attendance_pct exam_score
+mean           0              0     61.532
+sd             1              1     10.242
+
+============================================================
+INTERPRETATION
+============================================================
+- Resolution time skewness 2.23; the log transform reduces it to -0.02.
+- z-scores give mean 0 / SD 1; min-max maps to [0,1] but is sensitive to outliers.
+- Scale before distance-based methods (k-means, PCA); fit scalers on training data only to avoid leakage.

@@ -1,0 +1,68 @@
+
+============================================================
+WORKED EXAMPLE: 3-point moving average of c(10,12,14,13,15)
+============================================================
+Time Series:
+Start = 1 
+End = 5 
+Frequency = 1 
+[1] NA NA 12 13 14
+
+============================================================
+DATASET: 120 months of sales (Jan 2015 - Dec 2024)
+============================================================
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  168.1   248.3   292.0   289.7   336.2   393.8 
+
+Linear trend: sales = 203.7 + 1.421*month (about 17.1 units/year)
+
+Seasonal component by month:
+   Jan    Feb    Mar    Apr    May    Jun    Jul    Aug    Sep    Oct    Nov 
+  8.65  21.40  22.86  16.48  18.14  22.18   7.65  -5.08 -29.83 -39.76 -32.27 
+   Dec 
+-10.43 
+Peak = Mar | trough = Oct | range = 62.6
+
+============================================================
+STATIONARITY (Augmented Dickey-Fuller)
+============================================================
+
+	Augmented Dickey-Fuller Test
+
+data:  s
+Dickey-Fuller = -7.526, Lag order = 4, p-value = 0.01
+alternative hypothesis: stationary
+
+
+	Augmented Dickey-Fuller Test
+
+data:  diff(s)
+Dickey-Fuller = -6.4579, Lag order = 4, p-value = 0.01
+alternative hypothesis: stationary
+
+
+============================================================
+AUTOCORRELATION
+============================================================
+ACF lag 1 = 0.931, lag 6 = 0.623, lag 12 = 0.706
+
+============================================================
+FORECAST: ETS (Holt-Winters type), hold-out on the last 12 months
+============================================================
+                     ME     RMSE      MAE        MPE     MAPE      MASE
+Training set -0.6353558 8.373734 6.462078 -0.4077108 2.404086 0.3475189
+Test set     -2.0531333 7.611518 6.131286 -0.6161338 1.695757 0.3297295
+                   ACF1 Theil's U
+Training set  0.1253269        NA
+Test set     -0.2731110 0.4278515
+
+2025 forecast:
+       Jan   Feb   Mar   Apr   May   Jun   Jul   Aug   Sep   Oct   Nov   Dec
+2025 384.6 400.5 403.4 398.5 403.2 407.1 394.0 382.7 359.4 350.9 359.9 383.1
+
+============================================================
+INTERPRETATION
+============================================================
+- Sales trend upward by about 17 units a year.
+- Clear 12-month seasonality: highest in Mar, lowest in Oct.
+- The raw series is non-stationary (trend); differencing removes it, as ARIMA-type models require.

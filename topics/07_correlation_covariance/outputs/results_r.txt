@@ -1,0 +1,69 @@
+
+============================================================
+WORKED EXAMPLE: x = 1:5, y = c(2,4,5,4,5)
+============================================================
+cov(x,y) = 1.5 (= 6/4)
+r = cov/(sx*sy) = 0.7746 | cor(): 0.7746 
+
+============================================================
+COVARIANCE MATRIX
+============================================================
+               study_hours attendance_pct sleep_hours prior_gpa exam_score
+study_hours          17.70           0.68       -0.27      0.00      30.52
+attendance_pct        0.68          50.74       -0.29      0.02      11.09
+sleep_hours          -0.27          -0.29        0.93      0.02      -0.12
+prior_gpa             0.00           0.02        0.02      0.27       1.12
+exam_score           30.52          11.09       -0.12      1.12     104.91
+
+============================================================
+PEARSON CORRELATION MATRIX
+============================================================
+               study_hours attendance_pct sleep_hours prior_gpa exam_score
+study_hours          1.000          0.023      -0.067     0.002      0.708
+attendance_pct       0.023          1.000      -0.042     0.005      0.152
+sleep_hours         -0.067         -0.042       1.000     0.039     -0.013
+prior_gpa            0.002          0.005       0.039     1.000      0.209
+exam_score           0.708          0.152      -0.013     0.209      1.000
+
+============================================================
+SPEARMAN CORRELATION MATRIX
+============================================================
+               study_hours attendance_pct sleep_hours prior_gpa exam_score
+study_hours          1.000          0.008      -0.050     0.015      0.715
+attendance_pct       0.008          1.000      -0.022     0.010      0.150
+sleep_hours         -0.050         -0.022       1.000     0.014      0.007
+prior_gpa            0.015          0.010       0.014     1.000      0.204
+exam_score           0.715          0.150       0.007     0.204      1.000
+
+============================================================
+SIGNIFICANCE (Hmisc::rcorr)
+============================================================
+p-values:
+               study_hours attendance_pct sleep_hours prior_gpa exam_score
+study_hours             NA        0.69500       0.247  0.970000   0.000000
+attendance_pct       0.695             NA       0.470  0.936000   0.008380
+sleep_hours          0.247        0.47000          NA  0.505000   0.828000
+prior_gpa            0.970        0.93600       0.505        NA   0.000268
+exam_score           0.000        0.00838       0.828  0.000268         NA
+
+============================================================
+cor.test: study_hours vs exam_score
+============================================================
+
+	Pearson's product-moment correlation
+
+data:  num$study_hours and num$exam_score
+t = 17.323, df = 298, p-value < 2.2e-16
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.6469930 0.7605703
+sample estimates:
+      cor 
+0.7083368 
+
+
+============================================================
+INTERPRETATION
+============================================================
+- Strongest linear link with exam score: study_hours (r = +0.71).
+- Correlation is unit-free in [-1, 1]; covariance depends on units. Correlation is not causation.

@@ -1,0 +1,73 @@
+
+============================================================
+WORKED EXAMPLES
+============================================================
+Binomial(10, 0.3): P(X=3) = 0.2668 
+Poisson(5):        P(X<=3) = 0.265 
+Normal(60, 10):    P(50<X<70) = 0.6827 
+Exponential(mean 8): P(X>10) = 0.2865 
+
+============================================================
+FIT 1: exam_score ~ Normal
+============================================================
+Fitting of the distribution ' norm ' by maximum likelihood 
+Parameters : 
+     estimate Std. Error
+mean 61.53233  0.5903563
+sd   10.22527  0.4174450
+Loglikelihood:  -1123.14   AIC:  2250.281   BIC:  2257.688 
+Correlation matrix:
+     mean sd
+mean    1  0
+sd      0  1
+
+P(score >= 70) = 0.2038 | P(score < 50) = 0.1297 | 90th percentile = 74.64
+
+	Asymptotic one-sample Kolmogorov-Smirnov test
+
+data:  scores
+D = 0.034284, p-value = 0.8724
+alternative hypothesis: two-sided
+
+
+============================================================
+FIT 2: arrival_gap_min ~ Exponential
+============================================================
+Fitting of the distribution ' exp ' by maximum likelihood 
+Parameters : 
+      estimate  Std. Error
+rate 0.1349335 0.006034077
+Loglikelihood:  -1501.487   AIC:  3004.973   BIC:  3009.188 
+Mean gap = 7.41 minutes
+
+============================================================
+FIT 3: tickets_per_hour ~ Poisson
+============================================================
+Fitting of the distribution ' pois ' by maximum likelihood 
+Parameters : 
+       estimate Std. Error
+lambda     4.89 0.09889388
+Loglikelihood:  -1099.819   AIC:  2201.637   BIC:  2205.852 
+mean = 4.890, variance = 5.064 (Poisson: equal)
+
+============================================================
+FIT 4: resolution_hours — Lognormal vs Normal (AIC)
+============================================================
+Goodness-of-fit statistics
+                              lognormal     normal
+Kolmogorov-Smirnov statistic 0.02426613  0.1449545
+Cramer-von Mises statistic   0.03758380  3.7685288
+Anderson-Darling statistic   0.22137097 22.2497445
+
+Goodness-of-fit criteria
+                               lognormal   normal
+Akaike's Information Criterion  2352.222 2670.244
+Bayesian Information Criterion  2360.651 2678.673
+AIC lognormal = 2352.2 | AIC normal = 2670.2 -> better: lognormal
+
+============================================================
+INTERPRETATION
+============================================================
+- Exam scores ~ Normal(61.5, 10.2); KS test gives no evidence against it.
+- Ticket gaps ~ Exponential with mean 7.4 min; counts per hour have mean ~ variance (Poisson-like).
+- Resolution times are right-skewed; the lognormal fits better than the normal (lower AIC).

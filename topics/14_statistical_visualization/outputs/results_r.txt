@@ -1,0 +1,28 @@
+
+============================================================
+WORKED EXAMPLE: choosing the right chart
+============================================================
+One numeric variable        -> histogram / density / boxplot
+Numeric by category         -> boxplot / violin
+Two numeric variables       -> scatter plot (+ regression line)
+Numeric over time           -> line graph
+Counts of a category        -> bar chart
+
+============================================================
+DATASET: statistical charts
+============================================================
+Saved r_hist.png
+Saved r_box.png
+Saved r_violin.png
+Saved r_scatter.png
+Saved r_bar.png
+Saved r_line.png
+Saved r_interactive_scatter.html (open in a browser)
+
+============================================================
+INTERPRETATION
+============================================================
+- The histogram shows an approximately bell-shaped score distribution.
+- Boxplot/violin show method C shifts the whole distribution upward.
+- The scatter plot shows a positive linear relationship between study hours and score.
+- Truncating a bar chart's axis exaggerates differences: always start bars at zero.

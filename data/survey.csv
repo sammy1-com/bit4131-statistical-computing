@@ -1,0 +1,401 @@
+respondent_id,program,preferred_language
+1,Computer Science,R
+2,IT,Python
+3,Computer Science,Python
+4,IT,Python
+5,IT,Java
+6,Statistics,Python
+7,IT,Python
+8,Statistics,R
+9,Statistics,R
+10,IT,Python
+11,Statistics,R
+12,IT,C++
+13,IT,Python
+14,Computer Science,Python
+15,Statistics,R
+16,Statistics,C++
+17,IT,Python
+18,Computer Science,Python
+19,Computer Science,C++
+20,Computer Science,C++
+21,Computer Science,Python
+22,IT,Python
+23,IT,C++
+24,IT,C++
+25,Statistics,R
+26,Statistics,R
+27,Computer Science,Java
+28,Computer Science,Python
+29,Computer Science,Python
+30,Computer Science,R
+31,IT,Java
+32,Statistics,Python
+33,Statistics,R
+34,Statistics,Python
+35,IT,C++
+36,Computer Science,Python
+37,Statistics,Python
+38,Statistics,Python
+39,Computer Science,Python
+40,IT,C++
+41,Computer Science,R
+42,Statistics,R
+43,IT,R
+44,Statistics,R
+45,Statistics,Python
+46,Computer Science,Python
+47,Statistics,R
+48,Computer Science,Python
+49,IT,Python
+50,Computer Science,Python
+51,Statistics,Python
+52,IT,Java
+53,IT,R
+54,IT,C++
+55,Statistics,R
+56,Computer Science,Python
+57,IT,Python
+58,Statistics,R
+59,IT,Python
+60,Computer Science,Java
+61,Statistics,R
+62,Statistics,Java
+63,Statistics,Python
+64,IT,C++
+65,Computer Science,Java
+66,Statistics,R
+67,IT,Java
+68,Statistics,R
+69,Computer Science,Python
+70,Computer Science,C++
+71,Computer Science,C++
+72,Computer Science,Python
+73,Statistics,Python
+74,Statistics,Python
+75,Statistics,Java
+76,Computer Science,R
+77,Computer Science,Python
+78,Statistics,Python
+79,Statistics,C++
+80,Statistics,R
+81,Computer Science,C++
+82,Statistics,Python
+83,IT,R
+84,IT,Java
+85,IT,Python
+86,IT,C++
+87,Computer Science,Java
+88,Statistics,R
+89,Computer Science,Python
+90,Statistics,R
+91,IT,C++
+92,Statistics,Python
+93,Computer Science,Python
+94,IT,Python
+95,Statistics,R
+96,IT,C++
+97,Statistics,R
+98,Statistics,Python
+99,Computer Science,Python
+100,IT,Python
+101,Statistics,Python
+102,Statistics,R
+103,Statistics,R
+104,Computer Science,Java
+105,IT,C++
+106,Statistics,R
+107,Statistics,R
+108,Computer Science,Python
+109,Computer Science,Java
+110,Computer Science,C++
+111,Computer Science,Python
+112,Statistics,R
+113,Statistics,Python
+114,IT,R
+115,Statistics,Java
+116,Statistics,Java
+117,Statistics,Java
+118,Statistics,R
+119,IT,Java
+120,Statistics,Java
+121,Computer Science,Python
+122,Computer Science,Python
+123,Statistics,R
+124,Computer Science,C++
+125,Statistics,R
+126,Computer Science,R
+127,Computer Science,C++
+128,IT,Python
+129,IT,Java
+130,IT,Java
+131,Computer Science,Python
+132,Statistics,Python
+133,IT,C++
+134,IT,Python
+135,Statistics,R
+136,IT,R
+137,Computer Science,Python
+138,Computer Science,Python
+139,Computer Science,R
+140,Computer Science,Java
+141,IT,Python
+142,Statistics,R
+143,IT,C++
+144,Statistics,R
+145,Statistics,Java
+146,IT,Python
+147,Statistics,R
+148,Computer Science,C++
+149,Statistics,Python
+150,Computer Science,Python
+151,Computer Science,Python
+152,Statistics,Python
+153,Computer Science,Python
+154,IT,Python
+155,Statistics,Java
+156,IT,C++
+157,Computer Science,C++
+158,Computer Science,Python
+159,IT,C++
+160,Statistics,R
+161,Computer Science,Java
+162,Computer Science,Java
+163,Computer Science,C++
+164,IT,Java
+165,Computer Science,C++
+166,Statistics,R
+167,IT,C++
+168,IT,C++
+169,Statistics,R
+170,IT,Java
+171,IT,C++
+172,Computer Science,C++
+173,Statistics,R
+174,Statistics,Python
+175,Computer Science,C++
+176,Computer Science,C++
+177,Computer Science,Python
+178,Computer Science,C++
+179,Statistics,R
+180,Computer Science,Java
+181,Computer Science,Python
+182,Computer Science,Python
+183,Statistics,R
+184,Computer Science,C++
+185,Computer Science,Java
+186,IT,Python
+187,IT,C++
+188,IT,Python
+189,Computer Science,Python
+190,IT,C++
+191,Statistics,R
+192,Statistics,R
+193,IT,Java
+194,Statistics,C++
+195,Computer Science,R
+196,Statistics,C++
+197,Computer Science,R
+198,IT,R
+199,Statistics,R
+200,Statistics,R
+201,IT,Python
+202,Computer Science,Python
+203,Statistics,R
+204,Computer Science,Python
+205,Statistics,R
+206,IT,C++
+207,Computer Science,Java
+208,Computer Science,C++
+209,Computer Science,C++
+210,Statistics,C++
+211,Computer Science,Java
+212,Computer Science,R
+213,Statistics,R
+214,Computer Science,Python
+215,IT,R
+216,IT,Python
+217,Computer Science,Python
+218,IT,C++
+219,Computer Science,R
+220,Statistics,Java
+221,Computer Science,C++
+222,IT,Python
+223,Statistics,C++
+224,Computer Science,Python
+225,Statistics,C++
+226,Computer Science,Python
+227,Statistics,R
+228,Computer Science,Python
+229,Statistics,R
+230,IT,Python
+231,Computer Science,Python
+232,IT,Python
+233,Computer Science,Python
+234,Statistics,Python
+235,Statistics,R
+236,Statistics,R
+237,IT,Java
+238,Computer Science,Python
+239,Computer Science,Python
+240,Computer Science,Python
+241,Computer Science,Java
+242,Statistics,R
+243,Statistics,R
+244,Computer Science,Java
+245,IT,Java
+246,Statistics,C++
+247,Computer Science,Python
+248,Computer Science,R
+249,Computer Science,Python
+250,Statistics,R
+251,Computer Science,Python
+252,Statistics,Python
+253,IT,Python
+254,Statistics,R
+255,Statistics,Java
+256,Statistics,Python
+257,IT,C++
+258,Statistics,Python
+259,Computer Science,Java
+260,Computer Science,Python
+261,Statistics,R
+262,Computer Science,C++
+263,Statistics,Java
+264,Computer Science,Java
+265,Statistics,Python
+266,Statistics,C++
+267,Statistics,R
+268,Statistics,R
+269,Computer Science,Java
+270,Computer Science,Python
+271,Computer Science,Python
+272,Statistics,R
+273,Computer Science,Java
+274,Statistics,R
+275,IT,Python
+276,Computer Science,Python
+277,IT,R
+278,IT,Java
+279,Computer Science,R
+280,Computer Science,Java
+281,IT,R
+282,Statistics,R
+283,Statistics,R
+284,Statistics,Java
+285,Statistics,Python
+286,Computer Science,R
+287,Computer Science,C++
+288,Computer Science,R
+289,Computer Science,R
+290,IT,Python
+291,Computer Science,R
+292,IT,R
+293,IT,Python
+294,IT,Python
+295,IT,Python
+296,Computer Science,C++
+297,Statistics,C++
+298,Computer Science,Python
+299,IT,R
+300,Computer Science,C++
+301,IT,R
+302,Computer Science,Java
+303,Statistics,R
+304,Computer Science,C++
+305,Statistics,R
+306,Statistics,Java
+307,IT,Python
+308,Computer Science,R
+309,IT,C++
+310,Computer Science,Python
+311,Statistics,R
+312,Computer Science,Python
+313,IT,Python
+314,Statistics,R
+315,Computer Science,Java
+316,Computer Science,Java
+317,Statistics,R
+318,Computer Science,Java
+319,Statistics,R
+320,Statistics,Python
+321,Computer Science,R
+322,IT,Java
+323,IT,C++
+324,Statistics,R
+325,Computer Science,C++
+326,Statistics,R
+327,Computer Science,Python
+328,Computer Science,Java
+329,IT,Java
+330,Statistics,R
+331,IT,Java
+332,Computer Science,Python
+333,IT,Python
+334,Computer Science,Python
+335,IT,Java
+336,Computer Science,C++
+337,IT,C++
+338,Computer Science,Python
+339,Statistics,Python
+340,IT,Java
+341,Computer Science,R
+342,Computer Science,Python
+343,Computer Science,Java
+344,Statistics,R
+345,Computer Science,Python
+346,Computer Science,Python
+347,Statistics,R
+348,IT,Python
+349,IT,Python
+350,Statistics,R
+351,Computer Science,R
+352,Statistics,R
+353,Computer Science,R
+354,Statistics,Python
+355,Computer Science,Python
+356,Computer Science,C++
+357,IT,C++
+358,Statistics,R
+359,Computer Science,Python
+360,Computer Science,Python
+361,Computer Science,Python
+362,Computer Science,Python
+363,IT,R
+364,Computer Science,C++
+365,Computer Science,Python
+366,Statistics,R
+367,Statistics,R
+368,Statistics,Python
+369,Statistics,Python
+370,Statistics,R
+371,Statistics,R
+372,IT,C++
+373,IT,C++
+374,Statistics,Java
+375,IT,Python
+376,Statistics,Java
+377,Computer Science,Python
+378,IT,C++
+379,Statistics,Python
+380,Statistics,Python
+381,Computer Science,Java
+382,IT,Python
+383,Statistics,Python
+384,Computer Science,R
+385,Statistics,Python
+386,Computer Science,Python
+387,Computer Science,Java
+388,Computer Science,Python
+389,Statistics,Python
+390,IT,Java
+391,Statistics,Java
+392,IT,C++
+393,Statistics,R
+394,Computer Science,C++
+395,Computer Science,Java
+396,Computer Science,C++
+397,Computer Science,Python
+398,IT,C++
+399,Statistics,R
+400,Statistics,R

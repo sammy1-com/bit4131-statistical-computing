@@ -1,0 +1,50 @@
+
+============================================================
+WORKED EXAMPLE: resampling c(3, 5, 7, 9, 11) with replacement
+============================================================
+resample 1 : 3 5 7 3 7 -> mean 5 
+resample 2 : 9 3 11 3 9 -> mean 7 
+resample 3 : 5 11 11 9 3 -> mean 7.8 
+
+============================================================
+BOOTSTRAP: median resolution time (boot package)
+============================================================
+Sample median = 3.880 | bootstrap SE = 0.1306 | bias = +0.0088
+BOOTSTRAP CONFIDENCE INTERVAL CALCULATIONS
+Based on 5000 bootstrap replicates
+
+CALL : 
+boot.ci(boot.out = bm, type = c("perc", "bca"))
+
+Intervals : 
+Level     Percentile            BCa          
+95%   ( 3.620,  4.120 )   ( 3.613,  4.115 )  
+Calculations and Intervals on Original Scale
+
+============================================================
+BOOTSTRAP: mean exam score vs t-interval
+============================================================
+Bootstrap SE = 0.5918 vs analytic 0.5913
+Bootstrap percentile CI: 60.38 62.7 | t-interval: 60.37 62.7 
+
+============================================================
+BOOTSTRAP: correlation (study_hours, exam_score)
+============================================================
+r = 0.708 | SE = 0.0272 | 95% CI = (0.653, 0.759)
+
+============================================================
+BOOTSTRAP: difference in means, C - A
+============================================================
+Observed 7.78 | 95% CI = (4.83, 10.81)
+
+============================================================
+rsample: tidy bootstrap of the median
+============================================================
+rsample bootstrap SE = 0.1291; percentile CI = (3.625, 4.125)
+
+============================================================
+INTERPRETATION
+============================================================
+- The median has no simple SE formula; bootstrap gives SE = 0.131 h and a CI of (3.62, 4.12).
+- For the mean, bootstrap and t-intervals nearly coincide, validating the bootstrap.
+- Correlations and mean differences get honest uncertainty estimates without normality assumptions.

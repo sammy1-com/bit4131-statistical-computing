@@ -1,0 +1,45 @@
+
+============================================================
+WORKED EXAMPLE: two fair dice
+============================================================
+P(sum = 7)                 = 0.1667
+P(at least one 6)          = 0.3056
+P(sum=7 AND at least one 6)= 0.0556
+P(sum=7 | at least one 6)  = 0.1818 (= 2/11)
+
+============================================================
+DATASET: probabilities from the students table
+============================================================
+P(pass)                    = 0.7533
+P(method B)                = 0.4100
+P(Statistics student)      = 0.3800
+
+Contingency table (method x passed):
+passed   0    1  All
+method              
+A       27   62   89
+B       34   89  123
+C       13   75   88
+All     74  226  300
+
+Conditional probabilities P(pass | method):
+  P(pass | method A) = 0.6966
+  P(pass | method B) = 0.7236
+  P(pass | method C) = 0.8523
+
+P(B and pass) = 0.2967   vs   P(B)P(pass) = 0.3089
+-> Not equal, so 'method B' and 'passing' are NOT independent.
+
+Bayes: P(method C | pass) = P(pass|C)P(C)/P(pass) = 0.3319
+
+============================================================
+SIMULATION: P(sum=7 | at least one 6) with 200,000 rolls
+============================================================
+Simulated = 0.1795   Exact = 0.1818
+
+============================================================
+INTERPRETATION
+============================================================
+- Overall pass probability is 0.75, but it rises from 0.70 (A) to 0.85 (C).
+- Conditioning changes the probability, so method carries information about passing.
+- The simulation matches the exact result 2/11, validating the Monte Carlo approach.

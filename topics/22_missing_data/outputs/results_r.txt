@@ -1,0 +1,78 @@
+
+============================================================
+WORKED EXAMPLE: mean imputation on c(4, 6, NA, 10)
+============================================================
+observed mean = 6.666667 -> imputed: 4 6 6.666667 10 
+Mean imputation keeps the mean but shrinks the variance.
+
+============================================================
+MISSING-DATA SUMMARY
+============================================================
+               n_missing pct_missing
+study_hours           38        12.7
+attendance_pct        53        17.7
+sleep_hours           35        11.7
+prior_gpa             26         8.7
+exam_score             0         0.0
+Rows with >= 1 missing: 131 of 300 | complete cases: 169
+
+Missing-data patterns (mice::md.pattern):
+    exam_score prior_gpa sleep_hours study_hours attendance_pct    
+169          1         1           1           1              1   0
+40           1         1           1           1              0   1
+28           1         1           1           0              1   1
+4            1         1           1           0              0   2
+24           1         1           0           1              1   1
+5            1         1           0           1              0   2
+2            1         1           0           0              1   2
+2            1         1           0           0              0   3
+20           1         0           1           1              1   1
+2            1         0           1           1              0   2
+2            1         0           1           0              1   2
+2            1         0           0           1              1   2
+             0        26          35          38             53 152
+
+============================================================
+MECHANISM: is missingness related to OBSERVED prior_gpa? (Fisher exact)
+============================================================
+attendance_pct  missing 29% when GPA<2.7 vs 15% otherwise; Fisher p = 0.019
+sleep_hours     missing 14% when GPA<2.7 vs 11% otherwise; Fisher p = 0.522
+
+============================================================
+IMPUTATION METHODS vs TRUTH
+============================================================
+      method RMSE_study_hours RMSE_attendance RMSE_prior_gpa SD_attendance
+1       Mean            4.133           7.113         0.4469         6.466
+2 mice (pmm)            4.549           8.908         0.8422         7.184
+3     Amelia            4.195          10.286         0.7494         7.068
+
+True SD of attendance = 7.124 | after deletion = 7.128
+
+============================================================
+BEFORE vs AFTER: regression slope of exam_score on study_hours
+============================================================
+Truth 1.7245 | complete cases 1.7729
+Mean         1.7729
+mice (pmm)   1.6850
+Amelia       1.7521
+
+mice pooled estimate (Rubin's rules, 5 imputations):
+         term estimate std.error statistic       df      p.value
+1 (Intercept) 40.65829  1.339659  30.34974 185.5273 7.234329e-74
+2 study_hours  1.72376  0.104978  16.42020 174.2018 3.240574e-37
+
+ Variables sorted by number of missings: 
+       Variable      Count
+ attendance_pct 0.17666667
+    study_hours 0.12666667
+    sleep_hours 0.11666667
+      prior_gpa 0.08666667
+     exam_score 0.00000000
+
+============================================================
+INTERPRETATION
+============================================================
+- Listwise deletion would discard 44% of students: wasteful and potentially biased.
+- Mean imputation shrinks the SD of attendance to 6.47 (true 7.12), understating uncertainty.
+- Model-based imputation helps most for variables that are related to the others; compare the RMSE table above per variable.
+- Multiple imputation (mice, Amelia) carries imputation uncertainty into the final estimates via Rubin's rules.

@@ -1,0 +1,85 @@
+
+============================================================
+WORKED EXAMPLE: Mahalanobis distance in 2D
+============================================================
+d^2 = 1.5000, d = 1.2247 | Euclidean distance = 2.8284
+mahalanobis(): 1.5 
+
+============================================================
+MULTIVARIATE SUMMARY
+============================================================
+Mean vector:
+   study_hours attendance_pct    sleep_hours      prior_gpa     exam_score 
+         12.11          87.82           7.00           3.06          61.53 
+
+Covariance matrix:
+               study_hours attendance_pct sleep_hours prior_gpa exam_score
+study_hours          17.70           0.68       -0.27      0.00      30.52
+attendance_pct        0.68          50.74       -0.29      0.02      11.09
+sleep_hours          -0.27          -0.29        0.93      0.02      -0.12
+prior_gpa             0.00           0.02        0.02      0.27       1.12
+exam_score           30.52          11.09       -0.12      1.12     104.91
+
+Generalised variance |S| = 1.04e+04 | total variance = 174.55
+
+============================================================
+MULTIVARIATE OUTLIERS (Mahalanobis, chi-square cut-off)
+============================================================
+Cut-off = 20.52; 1 outlier(s): student_id 146
+
+============================================================
+MANOVA: do the 5 measures jointly differ by method?
+============================================================
+           Df   Wilks approx F num Df den Df    Pr(>F)    
+method      2 0.80209   6.8315     10    586 3.959e-10 ***
+Residuals 297                                             
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+============================================================
+K-MEANS CLUSTERING (standardised)
+============================================================
+k = 2: tot.withinss = 1137.8, silhouette = 0.214
+k = 3: tot.withinss = 989.5, silhouette = 0.200
+k = 4: tot.withinss = 873.6, silhouette = 0.182
+k = 5: tot.withinss = 796.1, silhouette = 0.167
+k = 6: tot.withinss = 729.3, silhouette = 0.178
+
+Best k by silhouette = 2 
+Cluster profiles (means):
+  cluster study_hours attendance_pct sleep_hours prior_gpa exam_score
+1       1        9.00          86.73        7.05      2.94      53.97
+2       2       15.26          88.93        6.95      3.19      69.20
+Cluster vs method table:
+   
+     A  B  C
+  1 41 77 33
+  2 48 46 55
+
+============================================================
+HIERARCHICAL CLUSTERING (Ward)
+============================================================
+Ward cluster sizes: 157 143 
+
+============================================================
+vegan: permutational MANOVA (adonis2)
+============================================================
+Permutation test for adonis under reduced model
+Terms added sequentially (first to last)
+Permutation: free
+Number of permutations: 499
+
+vegan::adonis2(formula = dist(Z) ~ method, data = df, permutations = 499)
+          Df SumOfSqs      R2      F Pr(>F)   
+method     2    35.12 0.02349 3.5722  0.002 **
+Residual 297  1459.88 0.97651                 
+Total    299  1495.00 1.00000                 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+============================================================
+INTERPRETATION
+============================================================
+- MANOVA Wilks p = 4e-10: methods differ on the combined profile.
+- K-means picks k = 2 (silhouette 0.21); a silhouette below ~0.25 means weak cluster structure.
+- 1 multivariate outlier(s) flagged by Mahalanobis distance.

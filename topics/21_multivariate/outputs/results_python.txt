@@ -1,0 +1,75 @@
+
+============================================================
+WORKED EXAMPLE: Mahalanobis distance in 2D
+============================================================
+S =
+ [[4. 2.]
+ [2. 3.]] 
+d^2 = (x-mu)' S^-1 (x-mu) = 1.5 -> d = 1.2247
+Euclidean distance would be 2.8284 - Mahalanobis accounts for scale AND correlation.
+
+============================================================
+MULTIVARIATE SUMMARY
+============================================================
+Mean vector:
+study_hours       12.11
+attendance_pct    87.82
+sleep_hours        7.00
+prior_gpa          3.06
+exam_score        61.53
+
+Covariance matrix:
+                study_hours  attendance_pct  sleep_hours  prior_gpa  exam_score
+study_hours           17.70            0.68        -0.27       0.00       30.52
+attendance_pct         0.68           50.74        -0.29       0.02       11.09
+sleep_hours           -0.27           -0.29         0.93       0.02       -0.12
+prior_gpa              0.00            0.02         0.02       0.27        1.12
+exam_score            30.52           11.09        -0.12       1.12      104.91
+
+Generalised variance |S| = 1.04e+04;  total variance tr(S) = 174.55
+
+============================================================
+MULTIVARIATE OUTLIERS (Mahalanobis distance, chi-square cut-off)
+============================================================
+Cut-off chi2(0.999, df=5) = 20.52;  1 multivariate outlier(s): student_id [146]
+
+============================================================
+MANOVA: do the 5 measures jointly differ by teaching method?
+============================================================
+                           Value Num DF      Den DF    F Value Pr > F
+Wilks' lambda           0.802088     10       586.0   6.831454    0.0
+Pillai's trace          0.200644   10.0       588.0   6.556707    0.0
+Hotelling-Lawley trace   0.24334     10  436.758974   7.113764    0.0
+Roy's greatest root      0.22843      5         294  13.431656    0.0
+
+============================================================
+K-MEANS CLUSTERING (standardised data)
+============================================================
+k = 2: inertia = 1141.6, silhouette = 0.214
+k = 3: inertia = 993.0, silhouette = 0.200
+k = 4: inertia = 881.1, silhouette = 0.178
+k = 5: inertia = 800.4, silhouette = 0.168
+k = 6: inertia = 737.5, silhouette = 0.174
+
+Best k by silhouette = 2
+Cluster profiles (means):
+         study_hours  attendance_pct  sleep_hours  prior_gpa  exam_score
+cluster                                                                 
+0               9.00           86.73         7.05       2.94       53.97
+1              15.26           88.93         6.95       3.19       69.20
+Cluster sizes: [151, 149]
+Adjusted Rand index vs teaching method = 0.029 (0 = unrelated)
+
+============================================================
+HIERARCHICAL CLUSTERING (Ward)
+============================================================
+Ward cut into 2 clusters; sizes = [143, 157];  ARI vs k-means = 0.358
+
+============================================================
+INTERPRETATION
+============================================================
+- MANOVA Wilks' lambda p = 4e-10: methods differ on the combined profile of outcomes.
+- K-means picks k = 2 (best silhouette 0.21). Clusters differ most on study_hours and exam_score.
+- A silhouette below ~0.25 means weak structure: the data form a continuum, so the clusters are a convenient split, not natural groups.
+- Clusters do not line up with teaching method (ARI = 0.03, near 0), even though MANOVA finds method differences in means.
+- Mahalanobis distance flags 1 unusual multivariate observation(s) that single-variable checks could miss.

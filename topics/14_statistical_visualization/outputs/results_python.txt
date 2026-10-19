@@ -1,0 +1,24 @@
+
+============================================================
+WORKED EXAMPLE: choosing the right chart
+============================================================
+One numeric variable        -> histogram / density / boxplot
+Numeric by category         -> boxplot / violin / bar of means with error bars
+Two numeric variables       -> scatter plot (+ regression line)
+Numeric over time           -> line graph
+Counts of a category        -> bar chart (never a pie chart for many categories)
+Many numeric variables      -> correlation heatmap / scatter matrix
+
+============================================================
+DATASET: 6-panel statistical dashboard
+============================================================
+Saved py_dashboard.png (histogram, boxplot, violin, scatter, bar, line)
+Saved py_interactive_scatter.html (open in a browser)
+
+============================================================
+INTERPRETATION
+============================================================
+- Histogram shows an approximately bell-shaped score distribution centred near 61.
+- Boxplot/violin reveal method C shifts the whole distribution upward while spreads stay similar.
+- Scatter shows a clear positive linear relationship between study hours and score.
+- The truncated-axis bar chart exaggerates differences between methods: always start bar axes at zero.

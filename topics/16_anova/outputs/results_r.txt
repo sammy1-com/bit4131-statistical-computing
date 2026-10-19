@@ -1,0 +1,83 @@
+
+============================================================
+WORKED EXAMPLE: G1 = 5,6,7  G2 = 8,9,10  G3 = 11,12,13
+============================================================
+            Df Sum Sq Mean Sq F value Pr(>F)    
+grp          2     54      27      27  0.001 ***
+Residuals    6      6       1                   
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+By hand: SSB = 54, SSW = 6, F = (54/2)/(6/6) = 27
+
+============================================================
+ONE-WAY ANOVA: exam_score ~ method
+============================================================
+             Df Sum Sq Mean Sq F value   Pr(>F)    
+method        2   2908  1453.9   15.17 5.32e-07 ***
+Residuals   297  28459    95.8                     
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Type II table (car::Anova):
+Anova Table (Type II tests)
+
+Response: exam_score
+           Sum Sq  Df F value    Pr(>F)    
+method     2907.9   2  15.173 5.316e-07 ***
+Residuals 28459.0 297                      
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+eta-squared = 0.093
+
+Group means:
+  method exam_score.n exam_score.mean exam_score.sd
+1      A    89.000000       58.394382     10.297908
+2      B   123.000000       60.482114      9.057766
+3      C    88.000000       66.173864     10.237181
+
+============================================================
+ASSUMPTION CHECKS
+============================================================
+Levene's Test for Homogeneity of Variance (center = median)
+       Df F value Pr(>F)
+group   2  0.9662 0.3817
+      297               
+
+	Shapiro-Wilk normality test
+
+data:  residuals(fit)
+W = 0.9924, p-value = 0.1293
+
+
+============================================================
+POST-HOC: Tukey HSD
+============================================================
+  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = exam_score ~ method, data = df)
+
+$method
+        diff       lwr       upr     p adj
+B-A 2.087732 -1.121045  5.296508 0.2771557
+C-A 7.779482  4.313156 11.245808 0.0000007
+C-B 5.691750  2.472413  8.911087 0.0001210
+
+
+============================================================
+TWO-WAY ANOVA: method * gender
+============================================================
+               Df Sum Sq Mean Sq F value   Pr(>F)    
+method          2   2908  1453.9  15.034 6.08e-07 ***
+gender          1      2     2.0   0.021    0.884    
+method:gender   2     24    11.9   0.123    0.884    
+Residuals     294  28433    96.7                     
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+============================================================
+INTERPRETATION
+============================================================
+- F-test p = 5.3e-07: at least one method differs.
+- Method explains 9% of score variance (eta-squared).
+- Tukey HSD shows which pairs differ (see table above); interaction p-value is in the two-way table.

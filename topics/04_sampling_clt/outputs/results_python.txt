@@ -1,0 +1,24 @@
+
+============================================================
+WORKED EXAMPLE: standard error
+============================================================
+Population mean mu = 4.763, sigma = 3.481, skewness = 2.23
+For n = 30: SE = sigma/sqrt(n) = 3.481/5.477 = 0.6355
+
+============================================================
+SAMPLING DISTRIBUTION OF THE MEAN (5,000 samples each)
+============================================================
+   n  mean of means  SD of means  theory SE    skew  Shapiro p
+   2         4.7747       2.4700     2.4614    1.52     0.0000
+   5         4.7587       1.5474     1.5567    1.01     0.0000
+  30         4.7667       0.6415     0.6355    0.42     0.0000
+ 100         4.7653       0.3506     0.3481    0.13     0.0084
+ 500         4.7650       0.1555     0.1557    0.12     0.0110
+
+============================================================
+INTERPRETATION
+============================================================
+- The population is strongly right-skewed (skew 2.23) and clearly non-normal.
+- At n=2 the means are still skewed (1.52); by n=100 the skew is 0.13, close to a bell shape.
+- The mean of the sample means equals the population mean (unbiased), and their SD matches sigma/sqrt(n).
+- Quadrupling n halves the standard error: precision grows with the square root of sample size.

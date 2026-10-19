@@ -1,0 +1,63 @@
+---
+title: "Student Performance: A Reproducible Statistical Report (R Markdown)"
+author: "BIT 4131 Group"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    number_sections: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, fig.width = 7, fig.height = 4)
+set.seed(4131)
+library(broom); library(knitr)
+df <- read.csv("data/students.csv")      # knit_root_dir is the repository root
+df$method <- factor(df$method)
+```
+
+# Objective
+Investigate which factors influence exam performance among `r nrow(df)` students and whether teaching method matters.
+
+# Data
+`data/students.csv` (synthetic, produced by `data/generate_datasets.py`), `r ncol(df)` variables.
+
+```{r desc}
+kable(round(t(sapply(df[, c("study_hours", "attendance_pct", "sleep_hours", "prior_gpa", "exam_score")],
+                     function(v) c(mean = mean(v), sd = sd(v), min = min(v), max = max(v)))), 2),
+      caption = "Descriptive statistics")
+```
+
+# Methods
+One-way ANOVA (teaching method), Pearson correlation (study hours) and multiple linear regression. Significance level 0.05.
+
+# Results
+
+```{r plots}
+hist(df$exam_score, breaks = 20, col = "lightblue", border = "white", main = "Exam score distribution", xlab = "Score")
+boxplot(exam_score ~ method, data = df, col = "lightblue", main = "Score by method")
+plot(df$study_hours, df$exam_score, pch = 16, col = rgb(0, 0, 1, .4), xlab = "Study hours", ylab = "Exam score")
+abline(lm(exam_score ~ study_hours, df), col = "red", lwd = 2)
+```
+
+```{r models}
+an <- summary(aov(exam_score ~ method, df))[[1]]
+ct <- cor.test(df$study_hours, df$exam_score)
+fit <- lm(exam_score ~ study_hours + attendance_pct + prior_gpa + method, df)
+kable(tidy(fit), digits = 4, caption = "Regression coefficients")
+```
+
+* **ANOVA:** F = `r round(an[["F value"]][1], 2)`, p = `r signif(an[["Pr(>F)"]][1], 3)`
+* **Correlation (study hours, score):** r = `r round(ct$estimate, 3)`, p = `r signif(ct$p.value, 3)`
+* **Regression:** R-squared = `r round(summary(fit)$r.squared, 3)`
+
+# Conclusions
+1. Teaching method matters: mean scores differ significantly across methods.
+2. Study hours is the strongest single predictor; each extra hour adds about `r round(coef(fit)[["study_hours"]], 2)` marks, controlling for other factors.
+3. The model explains `r round(summary(fit)$r.squared * 100)`% of score variation.
+4. The data are synthetic: the conclusions illustrate the method, not real students.
+
+# Reproducibility
+```{r session}
+sessionInfo()
+```

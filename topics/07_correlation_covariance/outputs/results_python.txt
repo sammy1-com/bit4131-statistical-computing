@@ -1,0 +1,53 @@
+
+============================================================
+WORKED EXAMPLE: x=[1,2,3,4,5], y=[2,4,5,4,5]
+============================================================
+x-bar = 3.0, y-bar = 4.0
+cov(x,y) = sum((x-xbar)(y-ybar))/(n-1) = 6/4 = 1.5
+r = cov/(sx*sy) = 0.7746   (numpy check: 0.7746)
+
+============================================================
+COVARIANCE MATRIX
+============================================================
+                study_hours  attendance_pct  sleep_hours  prior_gpa  exam_score
+study_hours           17.70            0.68        -0.27       0.00       30.52
+attendance_pct         0.68           50.74        -0.29       0.02       11.09
+sleep_hours           -0.27           -0.29         0.93       0.02       -0.12
+prior_gpa              0.00            0.02         0.02       0.27        1.12
+exam_score            30.52           11.09        -0.12       1.12      104.91
+
+============================================================
+PEARSON CORRELATION MATRIX
+============================================================
+                study_hours  attendance_pct  sleep_hours  prior_gpa  exam_score
+study_hours           1.000           0.023       -0.067      0.002       0.708
+attendance_pct        0.023           1.000       -0.042      0.005       0.152
+sleep_hours          -0.067          -0.042        1.000      0.039      -0.013
+prior_gpa             0.002           0.005        0.039      1.000       0.209
+exam_score            0.708           0.152       -0.013      0.209       1.000
+
+============================================================
+SPEARMAN (rank) CORRELATION MATRIX
+============================================================
+                study_hours  attendance_pct  sleep_hours  prior_gpa  exam_score
+study_hours           1.000           0.008       -0.050      0.015       0.715
+attendance_pct        0.008           1.000       -0.022      0.010       0.150
+sleep_hours          -0.050          -0.022        1.000      0.014       0.007
+prior_gpa             0.015           0.010        0.014      1.000       0.204
+exam_score            0.715           0.150        0.007      0.204       1.000
+
+============================================================
+SIGNIFICANCE of correlation with exam_score
+============================================================
+study_hours     r = +0.708   p = 5.42e-47
+attendance_pct  r = +0.152   p = 0.00838
+sleep_hours     r = -0.013   p = 0.828
+prior_gpa       r = +0.209   p = 0.000268
+
+============================================================
+INTERPRETATION
+============================================================
+- Strongest linear link with exam score: study_hours (r = +0.71, p = 5.4e-47).
+- Positive r: both rise together. |r| near 1 is strong; near 0 means no linear relationship.
+- Covariance depends on units (hard to compare); correlation is the unit-free version in [-1, 1].
+- Correlation measures association, not causation: study time may proxy for motivation.

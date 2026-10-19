@@ -1,0 +1,37 @@
+
+============================================================
+WORKED EXAMPLE: n=25, mean=50, s=10, 95% CI
+============================================================
+SE = s/sqrt(n) = 2.00;  t(0.975, 24) = 2.0639
+Margin = 4.128;  CI = (45.87, 54.13)
+
+============================================================
+CI FOR MEAN EXAM SCORE (t-interval)
+============================================================
+90% CI: (60.56, 62.51)  width = 1.95
+95% CI: (60.37, 62.70)  width = 2.33
+99% CI: (60.00, 63.07)  width = 3.07
+Point estimate = 61.53
+
+============================================================
+CI FOR PASS PROPORTION (Wilson)
+============================================================
+p-hat = 0.7533; 95% Wilson CI = (0.7016, 0.7987)
+
+============================================================
+CI FOR DIFFERENCE IN MEANS (method C - method A, Welch)
+============================================================
+Difference = 7.78; 95% CI = (4.73, 10.83)
+
+============================================================
+COVERAGE SIMULATION: 100 intervals from samples of n=30
+============================================================
+94/100 intervals contain the true mean 61.53
+
+============================================================
+INTERPRETATION
+============================================================
+- We are 95% confident the true mean exam score lies between 60.4 and 62.7.
+- 'Confidence' describes the method: about 95 of every 100 such intervals capture the true mean.
+- The interval for method C - A excludes 0, so C genuinely outperforms A.
+- Raising confidence from 90% to 99% widens the interval: more certainty costs precision.

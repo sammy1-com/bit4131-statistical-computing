@@ -1,0 +1,41 @@
+
+============================================================
+WORKED EXAMPLE: minimise f(x) = (x-3)^2 + 2
+============================================================
+Analytic x* = 3, f = 2 | optimize(): x* = 3.000000, f = 2.000000
+
+============================================================
+OBJECTIVE: Rosenbrock (true minimum at (1,1))
+============================================================
+Nelder-Mead  x = (1.00009, 1.00017), f = 1.70e-08, fn evals = 195, convergence code = 0 (0 = success)
+BFGS         x = (1.00000, 1.00000), f = 2.11e-18, fn evals = 109, convergence code = 0 (0 = success)
+CG           x = (1.00022, 1.00043), f = 4.63e-08, fn evals = 20023, convergence code = 1 (0 = success)
+
+optimx comparison:
+                  p1       p2        value fevals gevals niter convcode  kkt1
+Nelder-Mead 1.000089 1.000168 1.702241e-08    195     NA    NA        0 FALSE
+BFGS        1.000000 1.000000 2.105503e-18    109     50    NA        0  TRUE
+CG          1.098783 1.207585 9.730594e-03    423    101    NA        1 FALSE
+L-BFGS-B    1.000000 1.000000 3.272574e-20     58     58    NA        0  TRUE
+            kkt2 xtime
+Nelder-Mead TRUE 0.001
+BFGS        TRUE 0.001
+CG          TRUE 0.001
+L-BFGS-B    TRUE 0.000
+
+============================================================
+DATASET: MLE of Lognormal for ticket resolution times
+============================================================
+Numerical MLE: mu = 1.3430, sigma = 0.6611 | closed form: mu = 1.3431, sigma = 0.6611
+
+============================================================
+CONSTRAINED: maximise 4*sqrt(h1) + 3*sqrt(h2) subject to h1 + h2 = 20
+============================================================
+Optimal split: h1 = 12.800, h2 = 7.200, benefit = 22.3607 (Lagrange: 12.8 / 7.2)
+
+============================================================
+INTERPRETATION
+============================================================
+- All methods reach (1,1); gradient-based methods need fewer function evaluations than Nelder-Mead.
+- Numerical MLE agrees with the closed form: optimisation is how MLE is computed when no formula exists.
+- The constrained optimum puts more hours into the higher-benefit subject (Lagrange: 12.8 / 7.2).

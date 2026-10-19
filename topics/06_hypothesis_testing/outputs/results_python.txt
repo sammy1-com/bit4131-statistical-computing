@@ -1,0 +1,41 @@
+
+============================================================
+WORKED EXAMPLE: one-sample t-test, H0: mu = 60
+============================================================
+t = (63-60)/(9/6) = 2.000, df = 35, two-sided p = 0.0533
+p = 0.05331 -> FAIL TO REJECT H0 at alpha = 0.05
+
+============================================================
+TEST 1: one-sample t-test, H0: mean exam score = 60
+============================================================
+t = 2.591, df = 299, p = 0.01003 -> REJECT H0 at alpha = 0.05
+
+============================================================
+TEST 2: two-sample Welch t-test, method A vs C
+============================================================
+mean C = 66.17, mean A = 58.39
+t = 5.040, p = 1.154e-06 -> REJECT H0 at alpha = 0.05; Cohen's d = 0.76
+
+============================================================
+TEST 3: paired t-test, tutoring pre vs post
+============================================================
+mean gain = 5.44; t = 7.605; p = 3.209e-09 -> REJECT H0 at alpha = 0.05
+
+============================================================
+TEST 4: one-proportion z-test, H0: pass rate = 0.70
+============================================================
+p-hat = 0.753; z = 2.143; p = 0.03212 -> REJECT H0 at alpha = 0.05
+
+============================================================
+TEST 5: Levene test for equal variances (A vs C)
+============================================================
+Levene W = 0.165; p = 0.6852 -> FAIL TO REJECT H0 at alpha = 0.05
+
+============================================================
+INTERPRETATION
+============================================================
+- A p-value is the probability of data this extreme if H0 were true; below 0.05 we reject H0.
+- Mean score differs from 60 (p=0.01): significant.
+- Method C beats A by 7.8 marks (p=1.2e-06, Cohen's d=0.76): significant and practically large.
+- Tutoring raised scores on average (paired p=3.21e-09).
+- Statistical significance is not the same as practical importance: report effect size too.

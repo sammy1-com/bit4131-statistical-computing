@@ -1,0 +1,65 @@
+
+============================================================
+WORKED EXAMPLE: logit arithmetic
+============================================================
+x =  4: log-odds = -2.0, odds = 0.135, P = 1/(1+e^-eta) = 0.119
+x =  8: log-odds = +0.0, odds = 1.000, P = 1/(1+e^-eta) = 0.500
+x = 12: log-odds = +2.0, odds = 7.389, P = 1/(1+e^-eta) = 0.881
+Odds ratio per unit of x = e^0.5 = 1.649
+
+============================================================
+LOGISTIC REGRESSION (statsmodels): passed ~ predictors
+============================================================
+                           Logit Regression Results                           
+==============================================================================
+Dep. Variable:                 passed   No. Observations:                  300
+Model:                          Logit   Df Residuals:                      295
+Method:                           MLE   Df Model:                            4
+Date:                Mon, 19 Oct 2026   Pseudo R-squ.:                  0.3946
+Time:                        07:17:31   Log-Likelihood:                -101.46
+converged:                       True   LL-Null:                       -167.59
+Covariance Type:            nonrobust   LLR p-value:                 1.271e-27
+==================================================================================
+                     coef    std err          z      P>|z|      [0.025      0.975]
+----------------------------------------------------------------------------------
+const            -12.6907      3.016     -4.208      0.000     -18.601      -6.780
+study_hours        0.5124      0.067      7.663      0.000       0.381       0.643
+attendance_pct     0.0547      0.024      2.245      0.025       0.007       0.103
+sleep_hours       -0.0368      0.193     -0.191      0.848      -0.414       0.341
+prior_gpa          1.2969      0.346      3.745      0.000       0.618       1.976
+==================================================================================
+
+============================================================
+ODDS RATIOS with 95% CI
+============================================================
+                    OR   lower   upper       p
+study_hours     1.6693  1.4643  1.9031  0.0000
+attendance_pct  1.0563  1.0070  1.1080  0.0248
+sleep_hours     0.9639  0.6609  1.4057  0.8484
+prior_gpa       3.6580  1.8555  7.2118  0.0002
+
+McFadden pseudo R2 = 0.395
+
+============================================================
+CLASSIFICATION PERFORMANCE (70/30 train-test, scikit-learn)
+============================================================
+Confusion matrix [[TN FP],[FN TP]]:
+[[10 12]
+ [ 8 60]]
+Accuracy = 0.778; Precision = 0.833; Recall = 0.882; F1 = 0.857; AUC = 0.860
+Baseline (always predict 'pass') accuracy = 0.756
+
+Predicted pass probability for three hypothetical students:
+  hours=6, attend=70%, gpa=2.3: P(pass) = 0.046
+  hours=12, attend=85%, gpa=3.0: P(pass) = 0.851
+  hours=18, attend=95%, gpa=3.6: P(pass) = 0.998
+
+============================================================
+INTERPRETATION
+============================================================
+- study_hours: odds ratio 1.67 -> each unit increase multiplies the odds of passing by 1.67 (p = 1.8e-14).
+- attendance_pct: odds ratio 1.06 -> each unit increase multiplies the odds of passing by 1.06 (p = 0.025).
+- prior_gpa: odds ratio 3.66 -> each unit increase multiplies the odds of passing by 3.66 (p = 0.00018).
+- Test accuracy is 78% versus a 76% baseline of always predicting 'pass': only a modest gain, because the classes are imbalanced, so accuracy alone is misleading.
+- AUC = 0.86 and recall = 0.88 are more informative: the model ranks likely passers well above likely failers.
+- Odds ratio > 1 raises the odds of the event; < 1 lowers it; 1 means no effect.

@@ -1,0 +1,41 @@
+
+============================================================
+WORKED EXAMPLE: data = [4, 8, 6, 5, 3, 8, 9]
+============================================================
+mean     = 6.142857142857143 (sum 43 / 7)
+median   = 6.0 (sorted 3 4 5 6 8 8 9 -> middle value)
+mode     = 8 (appears twice)
+variance = 5.1429 (sample, n-1)
+std dev  = 2.2678
+
+============================================================
+DATASET: exam_score of 300 students
+============================================================
+Mean            : 61.53
+Median          : 61.80
+Mode (rounded)  : 59
+Variance        : 104.91
+Std deviation   : 10.24
+Range           : 25.7 to 87.6  (width 61.9)
+Q1 / Q2 / Q3    : 55.15 / 61.80 / 68.72
+IQR             : 13.57
+Outlier fences  : [34.79, 89.09]  -> 1 outlier(s)
+Coeff. of var.  : 16.6%
+Skewness        : -0.202
+
+============================================================
+Dispersion by teaching method
+============================================================
+        count   mean  median    std
+method                             
+A          89  58.39    60.7  10.30
+B         123  60.48    59.9   9.06
+C          88  66.17    67.5  10.24
+
+============================================================
+INTERPRETATION
+============================================================
+- Mean (61.5) and median (61.8) are close, so the distribution is approximately symmetric.
+- Typical students deviate about 10.2 marks from the mean; the middle 50% of scores span 13.6 marks.
+- The boxplot flags 1 unusual score(s) beyond 1.5 x IQR from the quartiles.
+- Method C has the highest centre, method A the lowest: spread is similar, centres differ.

@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.Rhistory
+.RData
+Rplots.pdf
+*_files/
+.DS_Store
