@@ -1,0 +1,76 @@
+
+============================================================
+DATASET: Kaggle Heart Disease (Cleveland, 303 patients; target as labelled by Kaggle)
+============================================================
+NOTE: physiology suggests target=1 is the LOWER-risk group (higher max heart rate, less ST depression); the Kaggle description says target=1 = disease. Results below follow the label exactly as given; verify against the UCI source before clinical claims.
+target
+1    165
+0    138
+         age  trestbps   chol  thalach
+count  303.0     303.0  303.0    303.0
+mean    54.4     131.6  246.3    149.6
+std      9.1      17.5   51.8     22.9
+min     29.0      94.0  126.0     71.0
+25%     47.5     120.0  211.0    133.5
+50%     55.0     130.0  240.0    153.0
+75%     61.0     140.0  274.5    166.0
+max     77.0     200.0  564.0    202.0
+
+============================================================
+CONFIDENCE INTERVALS (Topic 5)
+============================================================
+Cholesterol mean = 246.3, 95% CI = (240.4, 252.1)
+Proportion with target=1 = 0.545, 95% Wilson CI = (0.488, 0.600)
+
+============================================================
+HYPOTHESIS TESTS (Topic 6) and BOOTSTRAP (Topic 20): max heart rate (thalach) by target
+============================================================
+target=1 mean = 158.5, target=0 = 139.1, Welch t = 7.95, p = 5.02e-14
+Bootstrap 95% CI for the difference = (14.7, 24.1), SE = 2.44
+Sex vs target: chi2 = 22.72, p = 1.88e-06
+
+============================================================
+LOGISTIC REGRESSION (Topic 18)
+============================================================
+=================================================================================
+                    coef    std err          z      P>|z|      [0.025      0.975]
+---------------------------------------------------------------------------------
+Intercept         2.7217      2.253      1.208      0.227      -1.693       7.137
+C(sex)[T.1]      -2.0118      0.416     -4.831      0.000      -2.828      -1.196
+C(cp)[T.1]        1.4792      0.498      2.971      0.003       0.503       2.455
+C(cp)[T.2]        1.9510      0.415      4.701      0.000       1.138       2.764
+C(cp)[T.3]        2.2492      0.603      3.732      0.000       1.068       3.430
+C(exang)[T.1]    -0.7934      0.380     -2.087      0.037      -1.538      -0.048
+age              -0.0241      0.021     -1.146      0.252      -0.065       0.017
+trestbps         -0.0170      0.010     -1.733      0.083      -0.036       0.002
+chol             -0.0058      0.003     -1.735      0.083      -0.012       0.001
+thalach           0.0257      0.009      2.737      0.006       0.007       0.044
+oldpeak          -0.6834      0.175     -3.904      0.000      -1.027      -0.340
+=================================================================================
+
+Odds ratios:
+                   OR     lo        hi      p
+Intercept      15.206  0.184  1257.103  0.227
+C(sex)[T.1]     0.134  0.059     0.303  0.000
+C(cp)[T.1]      4.389  1.654    11.647  0.003
+C(cp)[T.2]      7.036  3.119    15.871  0.000
+C(cp)[T.3]      9.480  2.910    30.889  0.000
+C(exang)[T.1]   0.452  0.215     0.953  0.037
+age             0.976  0.937     1.017  0.252
+trestbps        0.983  0.964     1.002  0.083
+chol            0.994  0.988     1.001  0.083
+thalach         1.026  1.007     1.045  0.006
+oldpeak         0.505  0.358     0.712  0.000
+
+Confusion matrix [[TN FP],[FN TP]]:
+ [[26 15]
+ [ 8 42]]
+Accuracy = 0.747, Precision = 0.737, Recall = 0.840, AUC = 0.835
+
+============================================================
+INTERPRETATION
+============================================================
+- About 54% of patients carry label target=1 (95% CI 49% to 60%).
+- Patients with target=1 reach a higher peak heart rate by 19.4 bpm (p = 5.0e-14); the bootstrap CI agrees with the t-test.
+- Each extra unit of ST depression (oldpeak) multiplies the odds of target=1 by 0.51 (below 1 = lowers the odds, consistent with target=1 being the lower-risk label).
+- The model reaches AUC 0.83 on held-out patients; recall 0.84 matters most in screening (missed cases).

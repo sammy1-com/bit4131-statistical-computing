@@ -1,0 +1,56 @@
+
+============================================================
+DATASET: Kaggle Pima Indians Diabetes (768 women)
+============================================================
+                          count    mean     std    min     max
+Pregnancies               768.0    3.85    3.37   0.00   17.00
+Glucose                   768.0  120.89   31.97   0.00  199.00
+BloodPressure             768.0   69.11   19.36   0.00  122.00
+SkinThickness             768.0   20.54   15.95   0.00   99.00
+Insulin                   768.0   79.80  115.24   0.00  846.00
+BMI                       768.0   31.99    7.88   0.00   67.10
+DiabetesPedigreeFunction  768.0    0.47    0.33   0.08    2.42
+Age                       768.0   33.24   11.76  21.00   81.00
+Outcome                   768.0    0.35    0.48   0.00    1.00
+
+============================================================
+HIDDEN MISSING VALUES (Topic 22): zeros that are physiologically impossible
+============================================================
+               zeros   pct
+Glucose            5   0.7
+BloodPressure     35   4.6
+SkinThickness    227  29.6
+Insulin          374  48.7
+BMI               11   1.4
+Insulin mean: zeros kept = 79.8; true observed = 155.5; KNN-imputed = 153.1
+
+============================================================
+HYPOTHESIS TESTS (Topic 6): diabetic vs non-diabetic (imputed data)
+============================================================
+Glucose        diabetic mean =  142.2, non =  110.5, Welch t =  14.99, p = 8.19e-42, Cohen d = 1.16
+BMI            diabetic mean =   35.4, non =   30.8, Welch t =   9.09, p = 1.85e-18, Cohen d = 0.69
+Age            diabetic mean =   37.1, non =   31.2, Welch t =   6.92, p = 1.20e-11, Cohen d = 0.52
+BloodPressure  diabetic mean =   75.3, non =   70.8, Welch t =   4.96, p = 9.39e-07, Cohen d = 0.38
+
+============================================================
+PCA (Topic 10) on standardised predictors
+============================================================
+Eigenvalues: [2.559 1.493 1.17  0.925 0.742 0.439 0.366 0.316]
+Explained variance ratio: [0.319 0.186 0.146 0.116 0.093 0.055 0.046 0.039]
+Cumulative: [0.319 0.506 0.652 0.767 0.86  0.915 0.961 1.   ]
+                           PC1   PC2
+Pregnancies               0.25  0.58
+Glucose                   0.44 -0.05
+BloodPressure             0.35  0.18
+SkinThickness             0.40 -0.31
+Insulin                   0.41 -0.12
+BMI                       0.39 -0.41
+DiabetesPedigreeFunction  0.15 -0.25
+Age                       0.35  0.54
+
+============================================================
+INTERPRETATION
+============================================================
+- 49% of Insulin and 30% of SkinThickness values are coded 0 (really missing); leaving them in drags the Insulin mean from 156 to 80.
+- Glucose differs strongly between groups (see Welch p and Cohen d above): the strongest single marker of diabetes here.
+- The first two components explain 51% of the variance; no clean separation, so several variables are needed to classify.

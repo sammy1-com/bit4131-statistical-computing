@@ -1,0 +1,32 @@
+
+============================================================
+DATASET: Kaggle Air Passengers (monthly, 1949-1960)
+============================================================
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  104.0   180.0   265.5   280.3   360.5   622.0 
+ 1949  1950  1951  1952  1953  1954  1955  1956  1957  1958  1959  1960 
+126.7 139.7 170.2 197.0 225.0 238.9 284.0 328.2 368.4 381.0 428.3 476.2 
+
+============================================================
+DECOMPOSITION (multiplicative)
+============================================================
+ [1] 0.910 0.884 1.007 0.976 0.981 1.113 1.227 1.220 1.060 0.922 0.801 0.899
+
+============================================================
+STATIONARITY (Augmented Dickey-Fuller, constant, 12 lags; 5% critical value about -2.88)
+============================================================
+raw                          ADF =  1.565 -> NON-stationary
+log                          ADF = -1.952 -> NON-stationary
+log + diff(12) + diff(1)     ADF = -4.443 -> stationary
+
+============================================================
+FORECAST: Holt-Winters multiplicative, hold out last 24 months
+============================================================
+MAE = 32.9, RMSE = 36.6, MAPE = 7.3%
+Next 12 months: 447 420 465 496 508 575 667 658 550 493 420 466 
+
+============================================================
+INTERPRETATION
+============================================================
+- Traffic grew about 3.8x over 1949-1960 with a strong yearly cycle peaking in month 7 (lowest in month 11).
+- The seasonal swing widens with the level, so a multiplicative model / log transform is right; the raw series is non-stationary.

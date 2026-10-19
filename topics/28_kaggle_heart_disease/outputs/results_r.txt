@@ -1,0 +1,102 @@
+
+============================================================
+DATASET: Kaggle Heart Disease (Cleveland, 303 patients; target as labelled by Kaggle)
+============================================================
+NOTE: physiology suggests target=1 is the LOWER-risk group (higher max heart rate, less ST depression); the Kaggle description says target=1 = disease. Results follow the label as given.
+
+  0   1 
+138 165 
+
+============================================================
+CONFIDENCE INTERVALS (Topic 5)
+============================================================
+[1] 240.4046 252.1235
+attr(,"conf.level")
+[1] 0.95
+[1] 0.4882715 0.5997219
+attr(,"conf.level")
+[1] 0.95
+
+============================================================
+HYPOTHESIS TESTS (Topic 6) + BOOTSTRAP (Topic 20): thalach by target
+============================================================
+
+	Welch Two Sample t-test
+
+data:  a and b
+t = 7.953, df = 269.9, p-value = 5.019e-14
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ 14.57132 24.15912
+sample estimates:
+mean of x mean of y 
+ 158.4667  139.1014 
+
+Bootstrap 95% CI for the difference = (14.7, 24.1), SE = 2.41
+
+	Pearson's Chi-squared test with Yates' continuity correction
+
+data:  table(df$sex, df$target)
+X-squared = 22.717, df = 1, p-value = 1.877e-06
+
+
+============================================================
+LOGISTIC REGRESSION (Topic 18)
+============================================================
+
+Call:
+glm(formula = target ~ age + factor(sex) + factor(cp) + trestbps + 
+    chol + thalach + factor(exang) + oldpeak, family = binomial, 
+    data = df)
+
+Coefficients:
+                Estimate Std. Error z value Pr(>|z|)    
+(Intercept)     2.721720   2.252464   1.208  0.22692    
+age            -0.024132   0.021050  -1.146  0.25162    
+factor(sex)1   -2.011782   0.416414  -4.831 1.36e-06 ***
+factor(cp)1     1.479179   0.497899   2.971  0.00297 ** 
+factor(cp)2     1.951017   0.415031   4.701 2.59e-06 ***
+factor(cp)3     2.249204   0.602653   3.732  0.00019 ***
+trestbps       -0.017049   0.009836  -1.733  0.08305 .  
+chol           -0.005840   0.003365  -1.735  0.08265 .  
+thalach         0.025740   0.009406   2.737  0.00621 ** 
+factor(exang)1 -0.793364   0.380065  -2.087  0.03685 *  
+oldpeak        -0.683447   0.175079  -3.904 9.48e-05 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 417.64  on 302  degrees of freedom
+Residual deviance: 241.74  on 292  degrees of freedom
+AIC: 263.74
+
+Number of Fisher Scoring iterations: 5
+
+
+Odds ratios:
+                   OR 2.5 %   97.5 %
+(Intercept)    15.206 0.184 1256.981
+age             0.976 0.937    1.017
+factor(sex)1    0.134 0.059    0.303
+factor(cp)1     4.389 1.654   11.647
+factor(cp)2     7.036 3.119   15.871
+factor(cp)3     9.480 2.910   30.888
+trestbps        0.983 0.964    1.002
+chol            0.994 0.988    1.001
+thalach         1.026 1.007    1.045
+factor(exang)1  0.452 0.215    0.953
+oldpeak         0.505 0.358    0.712
+      Predicted
+Actual  0  1
+     0 32 12
+     1 10 37
+Accuracy = 0.758, Recall = 0.787, AUC = 0.850
+
+============================================================
+INTERPRETATION
+============================================================
+- About 54% of patients carry label target=1.
+- target=1 patients reach a higher peak heart rate by 19.4 bpm (p = 5.0e-14); the bootstrap CI agrees with the t-test.
+- Each extra unit of ST depression multiplies the odds of target=1 by 0.50 (below 1, consistent with target=1 being the lower-risk label).
+- Held-out AUC 0.85.

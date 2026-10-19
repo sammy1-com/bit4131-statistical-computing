@@ -1,0 +1,78 @@
+
+============================================================
+DATASET: Kaggle Air Passengers (monthly, 1949-1960, 144 obs)
+============================================================
+count    144.0
+mean     280.3
+std      120.0
+min      104.0
+25%      180.0
+50%      265.5
+75%      360.5
+max      622.0
+dtype: float64
+Yearly mean:
+1949    126.7
+1950    139.7
+1951    170.2
+1952    197.0
+1953    225.0
+1954    238.9
+1955    284.0
+1956    328.2
+1957    368.4
+1958    381.0
+1959    428.3
+1960    476.2
+
+============================================================
+DECOMPOSITION
+============================================================
+Seasonal swing grows with the level -> multiplicative is appropriate. Residual SD additive = 19.34; multiplicative (ratio) = 0.033
+Seasonal indices (multiplicative):
+1     0.910
+2     0.884
+3     1.007
+4     0.976
+5     0.981
+6     1.113
+7     1.227
+8     1.220
+9     1.060
+10    0.922
+11    0.801
+12    0.899
+
+============================================================
+STATIONARITY (ADF)
+============================================================
+raw                                  ADF =  0.815, p = 0.9919 -> NON-stationary
+log                                  ADF = -1.717, p = 0.4224 -> NON-stationary
+log, seasonal diff(12) + diff(1)     ADF = -4.443, p = 0.0002 -> stationary
+ACF lags 1, 12: [0.948 0.76 ]
+
+============================================================
+FORECAST: Holt-Winters multiplicative, hold out last 24 months
+============================================================
+MAE = 29.0, RMSE = 32.5, MAPE = 6.4%
+Next 12 months:
+1961-01-01    445
+1961-02-01    418
+1961-03-01    465
+1961-04-01    495
+1961-05-01    505
+1961-06-01    573
+1961-07-01    664
+1961-08-01    655
+1961-09-01    547
+1961-10-01    488
+1961-11-01    416
+1961-12-01    460
+Freq: MS
+
+============================================================
+INTERPRETATION
+============================================================
+- Traffic grew about 3.8x from 1949 to 1960 with a strong yearly cycle peaking in July and lowest in November.
+- The seasonal swing widens as the level rises, so a multiplicative model (or log transform) is right; the raw series is non-stationary.
+- After log + seasonal and ordinary differencing the series is stationary; Holt-Winters forecasts the last 2 years with MAPE 6.4%.

@@ -1,0 +1,93 @@
+
+============================================================
+DATASET: Kaggle Red Wine Quality (1,599 wines)
+============================================================
+                       mean    std   min     max
+fixed_acidity          8.32   1.74  4.60   15.90
+volatile_acidity       0.53   0.18  0.12    1.58
+citric_acid            0.27   0.19  0.00    1.00
+residual_sugar         2.54   1.41  0.90   15.50
+chlorides              0.09   0.05  0.01    0.61
+free_sulfur_dioxide   15.87  10.46  1.00   72.00
+total_sulfur_dioxide  46.47  32.90  6.00  289.00
+density                1.00   0.00  0.99    1.00
+pH                     3.31   0.15  2.74    4.01
+sulphates              0.66   0.17  0.33    2.00
+alcohol               10.42   1.07  8.40   14.90
+quality                5.64   0.81  3.00    8.00
+
+============================================================
+CORRELATION with quality (Topic 7)
+============================================================
+volatile_acidity       -0.391
+total_sulfur_dioxide   -0.185
+density                -0.175
+chlorides              -0.129
+pH                     -0.058
+free_sulfur_dioxide    -0.051
+residual_sugar          0.014
+fixed_acidity           0.124
+citric_acid             0.226
+sulphates               0.251
+alcohol                 0.476
+alcohol vs quality: r = 0.476, p = 2.83e-91
+
+============================================================
+MULTIPLE REGRESSION (Topic 8)
+============================================================
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                quality   R-squared:                       0.357
+Model:                            OLS   Adj. R-squared:                  0.355
+Method:                 Least Squares   F-statistic:                     147.4
+Date:                Mon, 19 Oct 2026   Prob (F-statistic):          7.12e-149
+Time:                        14:11:59   Log-Likelihood:                -1573.4
+No. Observations:                1599   AIC:                             3161.
+Df Residuals:                    1592   BIC:                             3198.
+Df Model:                           6                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+========================================================================================
+                           coef    std err          t      P>|t|      [0.025      0.975]
+----------------------------------------------------------------------------------------
+Intercept                4.2957      0.400     10.751      0.000       3.512       5.079
+alcohol                  0.2907      0.017     17.291      0.000       0.258       0.324
+volatile_acidity        -1.0382      0.100    -10.338      0.000      -1.235      -0.841
+sulphates                0.8887      0.110      8.076      0.000       0.673       1.105
+total_sulfur_dioxide    -0.0024      0.001     -4.684      0.000      -0.003      -0.001
+chlorides               -2.0023      0.398     -5.030      0.000      -2.783      -1.221
+pH                      -0.4352      0.116     -3.750      0.000      -0.663      -0.208
+========================================================================================
+VIF: {'alcohol': np.float64(1.22), 'volatile_acidity': np.float64(1.23), 'sulphates': np.float64(1.32), 'total_sulfur_dioxide': np.float64(1.05), 'chlorides': np.float64(1.33), 'pH': np.float64(1.22)}
+Residual normality (Shapiro): p = 2.85e-08
+
+============================================================
+ANOVA (Topic 16): alcohol content by quality grade
+============================================================
+              df       sum_sq     mean_sq           F         PR(>F)
+C(grade)     2.0   470.843637  235.421818  279.579864  8.009998e-105
+Residual  1596.0  1343.920900    0.842056         NaN            NaN
+eta^2 = 0.259
+   Multiple Comparison of Means - Tukey HSD, FWER=0.05   
+=========================================================
+  group1    group2  meandiff p-adj  lower   upper  reject
+---------------------------------------------------------
+high(>=7)  low(<=5)  -1.5916   0.0 -1.7577 -1.4255   True
+high(>=7) medium(6)  -0.8885   0.0 -1.0577 -0.7194   True
+ low(<=5) medium(6)    0.703   0.0  0.5869  0.8192   True
+---------------------------------------------------------
+Levene p = 0.0
+
+============================================================
+TRANSFORMATION (Topic 15): chlorides is right-skewed
+============================================================
+skewness raw = 5.68; log = 1.75; sqrt = 3.71
+
+============================================================
+INTERPRETATION
+============================================================
+- Alcohol has the strongest positive link with quality (r = 0.48); volatile acidity the strongest negative (-0.39).
+- The model explains 36% of the variation in quality (adj R2 = 0.35): useful but far from complete.
+- Each extra 1% alcohol is associated with +0.29 quality points, holding the other variables fixed.
+- Mean alcohol differs across quality grades (F = 279.6, p = 8e-105); log transform reduces chlorides skew a lot.
+- Quality is an integer score, so residuals are not perfectly normal; treat p-values as approximate.

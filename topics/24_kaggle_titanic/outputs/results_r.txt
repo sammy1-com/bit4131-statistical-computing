@@ -1,0 +1,106 @@
+
+============================================================
+DATASET: Kaggle Titanic (891 passengers)
+============================================================
+    Survived          Pclass           Age             Fare       
+ Min.   :0.0000   Min.   :1.000   Min.   : 0.42   Min.   :  0.00  
+ 1st Qu.:0.0000   1st Qu.:2.000   1st Qu.:20.12   1st Qu.:  7.91  
+ Median :0.0000   Median :3.000   Median :28.00   Median : 14.45  
+ Mean   :0.3838   Mean   :2.309   Mean   :29.70   Mean   : 32.20  
+ 3rd Qu.:1.0000   3rd Qu.:3.000   3rd Qu.:38.00   3rd Qu.: 31.00  
+ Max.   :1.0000   Max.   :3.000   Max.   :80.00   Max.   :512.33  
+                                  NA's   :177                     
+
+============================================================
+MISSING DATA (Topic 22)
+============================================================
+ Age 
+19.9 
+Survival when Age missing: 0.294 | observed: 0.406 
+Age SD before = 14.53, after group-median imputation = 13.30
+
+============================================================
+CHI-SQUARE (Topic 17)
+============================================================
+      Survived
+Pclass   0   1
+     1  80 136
+     2  97  87
+     3 372 119
+
+	Pearson's Chi-squared test
+
+data:  tab
+X-squared = 102.89, df = 2, p-value < 2.2e-16
+
+Cramer's V = 0.340
+
+	Pearson's Chi-squared test with Yates' continuity correction
+
+data:  table(df$Sex, df$Survived)
+X-squared = 260.72, df = 1, p-value < 2.2e-16
+
+
+============================================================
+NON-PARAMETRIC (Topic 19): Fare by survival
+============================================================
+Median fare: survived = 26  died = 10.5 
+
+	Wilcoxon rank sum test with continuity correction
+
+data:  Fare by Survived
+W = 57806, p-value < 2.2e-16
+alternative hypothesis: true location shift is not equal to 0
+
+
+============================================================
+LOGISTIC REGRESSION (Topic 18)
+============================================================
+
+Call:
+glm(formula = Survived ~ factor(Pclass) + Sex + Age_imp + SibSp + 
+    Fare, family = binomial, data = df)
+
+Coefficients:
+                 Estimate Std. Error z value Pr(>|z|)    
+(Intercept)      4.097020   0.467916   8.756  < 2e-16 ***
+factor(Pclass)2 -1.182638   0.298594  -3.961 7.47e-05 ***
+factor(Pclass)3 -2.414074   0.303943  -7.943 1.98e-15 ***
+Sexmale         -2.699238   0.195345 -13.818  < 2e-16 ***
+Age_imp         -0.044395   0.008207  -5.410 6.32e-08 ***
+SibSp           -0.394270   0.106331  -3.708 0.000209 ***
+Fare             0.002155   0.002321   0.928 0.353197    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 1186.7  on 890  degrees of freedom
+Residual deviance:  784.6  on 884  degrees of freedom
+AIC: 798.6
+
+Number of Fisher Scoring iterations: 5
+
+
+Odds ratios:
+                    OR  2.5 %  97.5 %
+(Intercept)     60.161 24.045 150.523
+factor(Pclass)2  0.306  0.171   0.550
+factor(Pclass)3  0.089  0.049   0.162
+Sexmale          0.067  0.046   0.099
+Age_imp          0.957  0.941   0.972
+SibSp            0.674  0.547   0.830
+Fare             1.002  0.998   1.007
+      Predicted
+Actual   0   1
+     0 147  13
+     1  37  71
+Accuracy = 0.813, AUC = 0.860
+
+============================================================
+INTERPRETATION
+============================================================
+- Age is missing for 20% of passengers; group-median imputation keeps every row.
+- Class (chi2 = 102.9, p = 4.5e-23) and sex are strongly associated with survival.
+- Being male multiplies the odds of survival by 0.07; 3rd class by 0.09 (vs 1st).
+- Held-out accuracy 81%, AUC 0.86.
