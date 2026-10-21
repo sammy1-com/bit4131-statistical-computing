@@ -56,4 +56,16 @@ Run all scripts **from the repository root**.
 Synthetic data (allowed by the brief where no suitable dataset exists), generated with a fixed seed: `students`, `students_missing`, `tutoring_scores`, `monthly_sales`, `support_tickets`, `survey`. See the docstring in `data/generate_datasets.py`.
 
 ## Group members
-Add names / student IDs here.
+
+AYUB HUSSEIN - BSCCS/2024/56898
+SAMUEL NJUGUNA - BSCCS/2024/54633
+MIKE MOMANYI - BSCCS/2024/57241
+RICKSON MWANGI - BSCCS/2024/54222
+ANNIE WANGECI - BSCCS/2024/55251
+LINET KAMATHI - BSCCS/2024/50325
+STEED MBUGUA - BSCCS/2024/54025
+JOSHUA MULI - BSCCS/2024/73427
+COLLINS MATAGI - BSCCS/2024/50482
+KIKUYU BRIAN - BSCCS/2024/74678
+PHILIP PHILEMON - BSS/2022/53061
+JAMES LAAT - BSS/2024/54875
