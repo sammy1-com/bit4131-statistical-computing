@@ -1,7 +1,12 @@
 # BIT 4131 – Statistical Computing and Reporting (Group Work)
 
 Each of the 23 assigned topics is implemented in **both Python and R**, and follows the required structure:
-1. Theoretical explanation · 2. Mathematical formulation · 3. Worked example · 4. Dataset analysis (Python/R implementation) · 5. Expected statistical output · 6. Interpretation and visualisation
+1. Theoretical explanation ·
+2. Mathematical formulation ·
+3. Worked example ·
+4. Dataset analysis (Python/R implementation) ·
+5. Expected statistical output ·
+6. Interpretation and visualisation
 
 Every topic folder contains a `README.md` covering all six items, with `python/`, `r/` and `outputs/` (printed results + figures).
 
